@@ -2,7 +2,7 @@ sources = $(wildcard GUI/*.c)
 objects = $(sources:.c=.o)
 
 xemul: $(objects) xemul.o
-	gcc -o xemul $^ -L/usr/X11R6/lib -lXxf86misc
+	gcc -o xemul $^ -L/usr/X11R6/lib -lX11
 
 emul_w32: $(objects) emul_w32.o
 	gcc -o emul_w32 $^ -lwin32k -lgdi32
