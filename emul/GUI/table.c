@@ -19,7 +19,7 @@ void DrawTable(const struct CGUIConstItem *Table)
 	assert(Table->Kind==IDK_TABLE);
 
 	TableCtrlSpec=((struct CTableCtrl *)(Table->Specific));
-	
+
 	tLeft   = Table->Left;
 	tTop    = Table->Top;
 	tWidth  = Table->Width;
@@ -33,10 +33,10 @@ void DrawTable(const struct CGUIConstItem *Table)
 
 	Cols = TableCtrlSpec->ColCount;
 	Rows = TableCtrlSpec->RowCount;
-	
+
 	Cell = Table->Contained;
 	AddToDequeTail((void *)Cell,&DrawQueue);
-	// Заголовок таблиці
+	// Р—Р°РіРѕР»РѕРІРѕРє С‚Р°Р±Р»РёС†С–
 	vLine(Cell->Width+Cell->Left-4,tTop+1,tHeight-3);
 
 	for (i=1;i<Cols;i++)
@@ -48,10 +48,10 @@ void DrawTable(const struct CGUIConstItem *Table)
 	++Cell;
 	hLine(tLeft+1,Cell->Top-3,tWidth-3);
 
-	// друк по рядках
+	// РґСЂСѓРє РїРѕ СЂСЏРґРєР°С…
 	for (j=1;j<Rows;j++)
 	{
-		hLine(tLeft+1,Cell->Top-2,tWidth-3);	
+		hLine(tLeft+1,Cell->Top-2,tWidth-3);
 		Cell+=Cols;
 /*		for (i=1;i<Cols;i++)
 		{
@@ -62,7 +62,7 @@ void DrawTable(const struct CGUIConstItem *Table)
 			else
 				DrawLimitedString(Cell->Left+4,Cell->Top+2,Cell->Width-4,Cell->Height-2,
 					((struct CEditBoxItem *)(Cell->Specific))->Text,guiDisabledFont);
-			
+
 		}
 		++Cell;*/
 	}

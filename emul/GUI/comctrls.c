@@ -50,18 +50,18 @@ void SelectLabel(const struct CGUIConstItem *Label)
 ////////////////// EditBox /////////////////////
 
 void DrawEditBox(const struct CGUIConstItem *Edit)
-{	
+{
 	assert(Edit);
 	assert(Edit->Kind == IDK_EDIT);
-	
+
 	siLeft=Edit->Left;
 	siTop=Edit->Top;
 	siWidth=Edit->Width;
 	siHeight=Edit->Height;
 
 	ClearBox(siLeft+1,siTop+1,siWidth-2,siHeight-1);
-	// EditBox âèêîðèñòîâóºòüñÿ òàêîæ äëÿ ïðîìàëüîâóâàííÿ êîì³ðîê òàáëèö³,
-	// à äëÿ íèõ íå òðåáà ðàìêà
+	// EditBox Ð²Ð¸ÐºÐ¾Ñ€Ð¸ÑÑ‚Ð¾Ð²ÑƒÑ”Ñ‚ÑŒÑÑ Ñ‚Ð°ÐºÐ¾Ð¶ Ð´Ð»Ñ Ð¿Ñ€Ð¾Ð¼Ð°Ð»ÑŒÐ¾Ð²ÑƒÐ²Ð°Ð½Ð½Ñ ÐºÐ¾Ð¼Ñ–Ñ€Ð¾Ðº Ñ‚Ð°Ð±Ð»Ð¸Ñ†Ñ–,
+	// Ð° Ð´Ð»Ñ Ð½Ð¸Ñ… Ð½Ðµ Ñ‚Ñ€ÐµÐ±Ð° Ñ€Ð°Ð¼ÐºÐ°
 	if (Edit->Owner->Kind!=IDK_TABLE)
 		RectangleSet(siLeft,siTop,siWidth+1,siHeight+1);
 	if (Edit->Additional->IsEnabled)
@@ -84,7 +84,7 @@ void SelectEditBox(const struct CGUIConstItem *Edit)
 
 /////////// Button Functions //////////////////////
 
-const unsigned char 
+const unsigned char
 	LeftUpperCorner[3] = {0x30,0x40,0x80},
 	RightUpperCorner[3] = {0xc0,0x20,0x10},
 	LeftLowerCorner[3] = {0x80,0x40,0x30},
@@ -94,7 +94,7 @@ void DrawButton(const struct CGUIConstItem *Button)
 {
 	assert(Button);
 	assert(Button->Kind == IDK_BUTTON);
-	
+
 	siLeft=Button->Left,
 	siTop=Button->Top,
 	siWidth=Button->Width,
@@ -147,7 +147,7 @@ void DrawCheckBox(const struct CGUIConstItem *CheckBox)
 	siTop = CheckBox->Top;
 	siWidth = CheckBox->Width;
 	siHeight = CheckBox->Height;
-	
+
 	if (((struct CCheckBoxItem *)(CheckBox->Specific))->IsChecked)
 	{
 		BitCpy(siLeft,siTop,8,8,FlagChecked);

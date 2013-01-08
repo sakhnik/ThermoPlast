@@ -19,7 +19,7 @@ void ActionPerformed(const struct CGUIConstItem *Item,
 		ItemID = Item -> ID;
 	else
 		ItemID = 0;
-	
+
 	switch (ItemID)
 	{
 	case ID_MACHINE_BPROP:
@@ -67,7 +67,7 @@ void ActionPerformed(const struct CGUIConstItem *Item,
 		break;
 
 	}
-	
+
 }
 
 // End of action.c

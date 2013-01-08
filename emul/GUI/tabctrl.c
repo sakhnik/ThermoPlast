@@ -8,24 +8,24 @@
 #include "guiserv.h"
 #include "tools.h"
 
-// Ãëîáàëüí³ çì³íí³ ââîäÿòüñÿ äëÿ òîãî, ùîá çåêîíîìèòè ïàì"ÿòü ñòåêó
-// òà ÷àñ ³í³ö³àë³çàö³¿
+// Ð“Ð»Ð¾Ð±Ð°Ð»ÑŒÐ½Ñ– Ð·Ð¼Ñ–Ð½Ð½Ñ– Ð²Ð²Ð¾Ð´ÑÑ‚ÑŒÑÑ Ð´Ð»Ñ Ñ‚Ð¾Ð³Ð¾, Ñ‰Ð¾Ð± Ð·ÐµÐºÐ¾Ð½Ð¾Ð¼Ð¸Ñ‚Ð¸ Ð¿Ð°Ð¼"ÑÑ‚ÑŒ ÑÑ‚ÐµÐºÑƒ
+// Ñ‚Ð° Ñ‡Ð°Ñ Ñ–Ð½Ñ–Ñ†Ñ–Ð°Ð»Ñ–Ð·Ð°Ñ†Ñ–Ñ—
 
-unsigned char 
-	hasNext, // ª ùå çàêëàäêè, ÿê³ íå âì³ñòèëèñÿ ó ðÿäîê?
-	hasPrev; // ×è º òàê³ çàêëàäêè, ÿê³ çíàõîäÿòüñÿ ïåðåä ïåøîþ âèäèìîþ?
-unsigned int 
-	tcLeft, tcTop, tcWidth, tcHeight, // Êîîðäèíàòè ïðÿìîêóòíèêà óñüîãî TabControl'a
-	tcRight, tcDown, tcTextLevel, // Äîïîì³æí³ ãåîìåòðè÷í³ äàí³
-	CurrentX, // Ïîòî÷íà êîîðäèíàòà ïî îñ³ àáñöèñ
-	xLength, // äîâæèíà ñèìâîëüíîãî ðÿäêà -- íàäïèñó
-	RightBound; // ïðàâà ìåæà ÷åðãîâî¿ çàêëàäêè
-struct CTabControlItem *TabCtrlSpec; // Âêàç³âíèê íà ñïåöèô³÷í³ äàí³
+unsigned char
+	hasNext, // Ð„ Ñ‰Ðµ Ð·Ð°ÐºÐ»Ð°Ð´ÐºÐ¸, ÑÐºÑ– Ð½Ðµ Ð²Ð¼Ñ–ÑÑ‚Ð¸Ð»Ð¸ÑÑ Ñƒ Ñ€ÑÐ´Ð¾Ðº?
+	hasPrev; // Ð§Ð¸ Ñ” Ñ‚Ð°ÐºÑ– Ð·Ð°ÐºÐ»Ð°Ð´ÐºÐ¸, ÑÐºÑ– Ð·Ð½Ð°Ñ…Ð¾Ð´ÑÑ‚ÑŒÑÑ Ð¿ÐµÑ€ÐµÐ´ Ð¿ÐµÑˆÐ¾ÑŽ Ð²Ð¸Ð´Ð¸Ð¼Ð¾ÑŽ?
+unsigned int
+	tcLeft, tcTop, tcWidth, tcHeight, // ÐšÐ¾Ð¾Ñ€Ð´Ð¸Ð½Ð°Ñ‚Ð¸ Ð¿Ñ€ÑÐ¼Ð¾ÐºÑƒÑ‚Ð½Ð¸ÐºÐ° ÑƒÑÑŒÐ¾Ð³Ð¾ TabControl'a
+	tcRight, tcDown, tcTextLevel, // Ð”Ð¾Ð¿Ð¾Ð¼Ñ–Ð¶Ð½Ñ– Ð³ÐµÐ¾Ð¼ÐµÑ‚Ñ€Ð¸Ñ‡Ð½Ñ– Ð´Ð°Ð½Ñ–
+	CurrentX, // ÐŸÐ¾Ñ‚Ð¾Ñ‡Ð½Ð° ÐºÐ¾Ð¾Ñ€Ð´Ð¸Ð½Ð°Ñ‚Ð° Ð¿Ð¾ Ð¾ÑÑ– Ð°Ð±ÑÑ†Ð¸Ñ
+	xLength, // Ð´Ð¾Ð²Ð¶Ð¸Ð½Ð° ÑÐ¸Ð¼Ð²Ð¾Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ñ€ÑÐ´ÐºÐ° -- Ð½Ð°Ð´Ð¿Ð¸ÑÑƒ
+	RightBound; // Ð¿Ñ€Ð°Ð²Ð° Ð¼ÐµÐ¶Ð° Ñ‡ÐµÑ€Ð³Ð¾Ð²Ð¾Ñ— Ð·Ð°ÐºÐ»Ð°Ð´ÐºÐ¸
+struct CTabControlItem *TabCtrlSpec; // Ð’ÐºÐ°Ð·Ñ–Ð²Ð½Ð¸Ðº Ð½Ð° ÑÐ¿ÐµÑ†Ð¸Ñ„Ñ–Ñ‡Ð½Ñ– Ð´Ð°Ð½Ñ–
 const struct CGUIConstItem
-	*CurrentTab, // Îáðîáëþâàíà çàêëàäêà
-	*ActiveTab; // Àêòèâíà çàêëàäêà, òîáòî òà, åëåìåíòè ÿêî¿ â³äîáðàæàþòüñÿ
-// Çîáðàæåííÿ ñòð³ëêè ë³âîðó÷
-const unsigned char PrevArrow[14]= 
+	*CurrentTab, // ÐžÐ±Ñ€Ð¾Ð±Ð»ÑŽÐ²Ð°Ð½Ð° Ð·Ð°ÐºÐ»Ð°Ð´ÐºÐ°
+	*ActiveTab; // ÐÐºÑ‚Ð¸Ð²Ð½Ð° Ð·Ð°ÐºÐ»Ð°Ð´ÐºÐ°, Ñ‚Ð¾Ð±Ñ‚Ð¾ Ñ‚Ð°, ÐµÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð¸ ÑÐºÐ¾Ñ— Ð²Ñ–Ð´Ð¾Ð±Ñ€Ð°Ð¶Ð°ÑŽÑ‚ÑŒÑÑ
+// Ð—Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ñ ÑÑ‚Ñ€Ñ–Ð»ÐºÐ¸ Ð»Ñ–Ð²Ð¾Ñ€ÑƒÑ‡
+const unsigned char PrevArrow[14]=
 {
 	0x10,0x00,
 	0x20,0x00,
@@ -35,7 +35,7 @@ const unsigned char PrevArrow[14]=
 	0x20,0x00,
 	0x10,0x00
 };
-// Çîáðàæåííÿ ñòð³ëêè ïðàâîðó÷
+// Ð—Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ñ ÑÑ‚Ñ€Ñ–Ð»ÐºÐ¸ Ð¿Ñ€Ð°Ð²Ð¾Ñ€ÑƒÑ‡
 const unsigned char NextArrow[14]=
 {
 	0x00,0x80,
@@ -47,22 +47,22 @@ const unsigned char NextArrow[14]=
 	0x00,0x80
 };
 
-// øèðèíà ïîëÿ äëÿ ñòð³ëîê äëÿ ïåðåìèêàííÿ ì³æ íåâèäèìèìè çàêëàäêàìè
-const unsigned int xWidth = 24; 
+// ÑˆÐ¸Ñ€Ð¸Ð½Ð° Ð¿Ð¾Ð»Ñ Ð´Ð»Ñ ÑÑ‚Ñ€Ñ–Ð»Ð¾Ðº Ð´Ð»Ñ Ð¿ÐµÑ€ÐµÐ¼Ð¸ÐºÐ°Ð½Ð½Ñ Ð¼Ñ–Ð¶ Ð½ÐµÐ²Ð¸Ð´Ð¸Ð¼Ð¸Ð¼Ð¸ Ð·Ð°ÐºÐ»Ð°Ð´ÐºÐ°Ð¼Ð¸
+const unsigned int xWidth = 24;
 
-// Ïåðøà çàêëàäêà ïðîìàëüîâóºòüñÿ òðîõè íå òàê, ÿê ³íø³, òîìó ¿¿ òðåáà âèä³ëèòè
-char TabIsFirst; 
+// ÐŸÐµÑ€ÑˆÐ° Ð·Ð°ÐºÐ»Ð°Ð´ÐºÐ° Ð¿Ñ€Ð¾Ð¼Ð°Ð»ÑŒÐ¾Ð²ÑƒÑ”Ñ‚ÑŒÑÑ Ñ‚Ñ€Ð¾Ñ…Ð¸ Ð½Ðµ Ñ‚Ð°Ðº, ÑÐº Ñ–Ð½ÑˆÑ–, Ñ‚Ð¾Ð¼Ñƒ Ñ—Ñ— Ñ‚Ñ€ÐµÐ±Ð° Ð²Ð¸Ð´Ñ–Ð»Ð¸Ñ‚Ð¸
+char TabIsFirst;
 
-// Íàá³ð äîïîì³æíèõ ñïðàéò³â
-const unsigned char 
+// ÐÐ°Ð±Ñ–Ñ€ Ð´Ð¾Ð¿Ð¾Ð¼Ñ–Ð¶Ð½Ð¸Ñ… ÑÐ¿Ñ€Ð°Ð¹Ñ‚Ñ–Ð²
+const unsigned char
 	leftCorner[4]={0x30,0x40,0x80,0x80},
 	middleCorner[4]={0x10,0xa0,0x40,0x40},
 	rightCorner[4]={0x00,0x80,0x40,0x40},
 	rightCorner1[4]={0x40,0x20,0x10,0x10};
 
 /***************************************************************
- * Ôóíêö³ÿ â³äîáðàæàº çàêëàäêè íà åêðàí³, âèõîäÿ÷è ç äàíèõ,    *
- * ùî ðîçì³ùåí³ â ConstDeskTop[]                               *
+ * Ð¤ÑƒÐ½ÐºÑ†Ñ–Ñ Ð²Ñ–Ð´Ð¾Ð±Ñ€Ð°Ð¶Ð°Ñ” Ð·Ð°ÐºÐ»Ð°Ð´ÐºÐ¸ Ð½Ð° ÐµÐºÑ€Ð°Ð½Ñ–, Ð²Ð¸Ñ…Ð¾Ð´ÑÑ‡Ð¸ Ð· Ð´Ð°Ð½Ð¸Ñ…,    *
+ * Ñ‰Ð¾ Ñ€Ð¾Ð·Ð¼Ñ–Ñ‰ÐµÐ½Ñ– Ð² ConstDeskTop[]                               *
  ***************************************************************/
 int DrawTabControl(const struct CGUIConstItem *TabControl)
 {
@@ -83,11 +83,11 @@ int DrawTabControl(const struct CGUIConstItem *TabControl)
 	CurrentX=tcLeft;
 
 	TabCtrlSpec = TabControl->Specific;
-	
+
 	CurrentTab = TabCtrlSpec->First;
 	ActiveTab = TabCtrlSpec->Active;
 	TabIsFirst = 1;
-	
+
 	ClearBox(tcLeft,tcTop,tcWidth,tcHeight);
 	BitCpy(tcLeft,tcTop,4,4,leftCorner);
 	vLine(tcLeft,tcTop+4,tcHeight - 4);
@@ -168,19 +168,19 @@ int DrawTabControl(const struct CGUIConstItem *TabControl)
 		hLine(CurrentX-2,tcTop+dh,xWidth+2);
 	}
 
-	// Íàðåøò³, òðåáà íàìàëþâàòè åëåìåíòè, ùî ì³ñòÿòüñÿ íà àêòèâí³é çàêëàäö³.
-	// Òîáòî, òðåáà ïðîñòî çàíåñòè ïåðøèé åëåìåíò ó ÷åðãó íà ïðîìàëüîâóâàííÿ
+	// ÐÐ°Ñ€ÐµÑˆÑ‚Ñ–, Ñ‚Ñ€ÐµÐ±Ð° Ð½Ð°Ð¼Ð°Ð»ÑŽÐ²Ð°Ñ‚Ð¸ ÐµÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð¸, Ñ‰Ð¾ Ð¼Ñ–ÑÑ‚ÑÑ‚ÑŒÑÑ Ð½Ð° Ð°ÐºÑ‚Ð¸Ð²Ð½Ñ–Ð¹ Ð·Ð°ÐºÐ»Ð°Ð´Ñ†Ñ–.
+	// Ð¢Ð¾Ð±Ñ‚Ð¾, Ñ‚Ñ€ÐµÐ±Ð° Ð¿Ñ€Ð¾ÑÑ‚Ð¾ Ð·Ð°Ð½ÐµÑÑ‚Ð¸ Ð¿ÐµÑ€ÑˆÐ¸Ð¹ ÐµÐ»ÐµÐ¼ÐµÐ½Ñ‚ Ñƒ Ñ‡ÐµÑ€Ð³Ñƒ Ð½Ð° Ð¿Ñ€Ð¾Ð¼Ð°Ð»ÑŒÐ¾Ð²ÑƒÐ²Ð°Ð½Ð½Ñ
 	if (ActiveTab->Contained)
 		AddToDequeTail((void *)ActiveTab->Contained,&DrawQueue);
 	return 1;
 }
 
 /*******************************************************************
- *  Êîæåí êîíòåéíåð ïîâèíåí ìàòè ôóíêö³þ âçÿòòÿ åëåìåíòà çà éîãî   *
- *  åêðàííèìè êîîðäèíàòàìè                                         *
- *  Ïîâåðíåííÿ 0 ó âèêëèêàþ÷ó ôóíêö³þ ñèãíàë³çóº ïðî òå, ùî ïîøóê  *
- *  òðåáà ïðîäîâæèòè ç åëåìåíòà *Item, îäèíèöÿ æ ïîêàçóº, ùî áàæà- *
- *  íèé åëåìåíò çíàõîäèòüñÿ çà àäðåñîþ *Item                       *
+ *  ÐšÐ¾Ð¶ÐµÐ½ ÐºÐ¾Ð½Ñ‚ÐµÐ¹Ð½ÐµÑ€ Ð¿Ð¾Ð²Ð¸Ð½ÐµÐ½ Ð¼Ð°Ñ‚Ð¸ Ñ„ÑƒÐ½ÐºÑ†Ñ–ÑŽ Ð²Ð·ÑÑ‚Ñ‚Ñ ÐµÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð° Ð·Ð° Ð¹Ð¾Ð³Ð¾   *
+ *  ÐµÐºÑ€Ð°Ð½Ð½Ð¸Ð¼Ð¸ ÐºÐ¾Ð¾Ñ€Ð´Ð¸Ð½Ð°Ñ‚Ð°Ð¼Ð¸                                         *
+ *  ÐŸÐ¾Ð²ÐµÑ€Ð½ÐµÐ½Ð½Ñ 0 Ñƒ Ð²Ð¸ÐºÐ»Ð¸ÐºÐ°ÑŽÑ‡Ñƒ Ñ„ÑƒÐ½ÐºÑ†Ñ–ÑŽ ÑÐ¸Ð³Ð½Ð°Ð»Ñ–Ð·ÑƒÑ” Ð¿Ñ€Ð¾ Ñ‚Ðµ, Ñ‰Ð¾ Ð¿Ð¾ÑˆÑƒÐº  *
+ *  Ñ‚Ñ€ÐµÐ±Ð° Ð¿Ñ€Ð¾Ð´Ð¾Ð²Ð¶Ð¸Ñ‚Ð¸ Ð· ÐµÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð° *Item, Ð¾Ð´Ð¸Ð½Ð¸Ñ†Ñ Ð¶ Ð¿Ð¾ÐºÐ°Ð·ÑƒÑ”, Ñ‰Ð¾ Ð±Ð°Ð¶Ð°- *
+ *  Ð½Ð¸Ð¹ ÐµÐ»ÐµÐ¼ÐµÐ½Ñ‚ Ð·Ð½Ð°Ñ…Ð¾Ð´Ð¸Ñ‚ÑŒÑÑ Ð·Ð° Ð°Ð´Ñ€ÐµÑÐ¾ÑŽ *Item                       *
  *******************************************************************/
 int GetTabControlItem(unsigned int x, unsigned int y,
 						const struct CGUIConstItem **Item)
@@ -204,14 +204,14 @@ int GetTabControlItem(unsigned int x, unsigned int y,
 	CurrentTab = TabCtrlSpec->First;
 	ActiveTab = TabCtrlSpec->Active;
 
-	// Òèöüíóëè ïîñåðåäèí³ àêòèâíî¿ ñòîð³íêè, îòæå, ïîøóê òðåáà ïðîäîâæèòè
-	// ñåðåä ¿¿ åëåìåíò³â
+	// Ð¢Ð¸Ñ†ÑŒÐ½ÑƒÐ»Ð¸ Ð¿Ð¾ÑÐµÑ€ÐµÐ´Ð¸Ð½Ñ– Ð°ÐºÑ‚Ð¸Ð²Ð½Ð¾Ñ— ÑÑ‚Ð¾Ñ€Ñ–Ð½ÐºÐ¸, Ð¾Ñ‚Ð¶Ðµ, Ð¿Ð¾ÑˆÑƒÐº Ñ‚Ñ€ÐµÐ±Ð° Ð¿Ñ€Ð¾Ð´Ð¾Ð²Ð¶Ð¸Ñ‚Ð¸
+	// ÑÐµÑ€ÐµÐ´ Ñ—Ñ— ÐµÐ»ÐµÐ¼ÐµÐ½Ñ‚Ñ–Ð²
 	if (IS_POINT_IN_RECTANGLE(tcLeft,tcTop+dh,tcWidth,tcHeight-dh,x,y))
 	{
 		if (ActiveTab->Contained)
 		{
 			*Item = ActiveTab->Contained;
-			return 0; // öå ïðîñòî ñèãíàë ïðî òå, ùî íå çíàéäåíî, òðåáà ïðîäîâæèòè ïîøóê
+			return 0; // Ñ†Ðµ Ð¿Ñ€Ð¾ÑÑ‚Ð¾ ÑÐ¸Ð³Ð½Ð°Ð» Ð¿Ñ€Ð¾ Ñ‚Ðµ, Ñ‰Ð¾ Ð½Ðµ Ð·Ð½Ð°Ð¹Ð´ÐµÐ½Ð¾, Ñ‚Ñ€ÐµÐ±Ð° Ð¿Ñ€Ð¾Ð´Ð¾Ð²Ð¶Ð¸Ñ‚Ð¸ Ð¿Ð¾ÑˆÑƒÐº
 		}
 		else
 		{
@@ -220,7 +220,7 @@ int GetTabControlItem(unsigned int x, unsigned int y,
 		}
 	}
 
-	// Òèöüíóëè íà îäíó ³ç çàêëàäîê, àáî é íà ñòð³ëêó
+	// Ð¢Ð¸Ñ†ÑŒÐ½ÑƒÐ»Ð¸ Ð½Ð° Ð¾Ð´Ð½Ñƒ Ñ–Ð· Ð·Ð°ÐºÐ»Ð°Ð´Ð¾Ðº, Ð°Ð±Ð¾ Ð¹ Ð½Ð° ÑÑ‚Ñ€Ñ–Ð»ÐºÑƒ
 	if (IS_POINT_IN_RECTANGLE(tcLeft,tcTop,tcWidth,dh,x,y))
 	{
 		hasPrev = (CurrentTab->Owner->Contained != CurrentTab);
@@ -301,9 +301,9 @@ int GetTabControlItem(unsigned int x, unsigned int y,
 }
 
 /********************************************************************
- *   Êîíòåéíåð íå ìîæíà âèä³ëèòè ö³ëêîì, ïðîòå éîãî ïåâíà ÷àñòèíà   *
- * ìîæå ìàòè òàêó âëàñòèâ³ñòü. Ó äàíîìó âèïàäêó éäåòüñÿ ïðî         *
- * çàêëàäêó Tab                                                     *
+ *   ÐšÐ¾Ð½Ñ‚ÐµÐ¹Ð½ÐµÑ€ Ð½Ðµ Ð¼Ð¾Ð¶Ð½Ð° Ð²Ð¸Ð´Ñ–Ð»Ð¸Ñ‚Ð¸ Ñ†Ñ–Ð»ÐºÐ¾Ð¼, Ð¿Ñ€Ð¾Ñ‚Ðµ Ð¹Ð¾Ð³Ð¾ Ð¿ÐµÐ²Ð½Ð° Ñ‡Ð°ÑÑ‚Ð¸Ð½Ð°   *
+ * Ð¼Ð¾Ð¶Ðµ Ð¼Ð°Ñ‚Ð¸ Ñ‚Ð°ÐºÑƒ Ð²Ð»Ð°ÑÑ‚Ð¸Ð²Ñ–ÑÑ‚ÑŒ. Ð£ Ð´Ð°Ð½Ð¾Ð¼Ñƒ Ð²Ð¸Ð¿Ð°Ð´ÐºÑƒ Ð¹Ð´ÐµÑ‚ÑŒÑÑ Ð¿Ñ€Ð¾         *
+ * Ð·Ð°ÐºÐ»Ð°Ð´ÐºÑƒ Tab                                                     *
  ********************************************************************/
 void SelectTab(const struct CGUIConstItem *Tab)
 {
@@ -313,7 +313,7 @@ void SelectTab(const struct CGUIConstItem *Tab)
 	TabControl = Tab->Owner;
 	assert(TabControl);
 	assert(TabControl->Kind == IDK_TABCONTROL);
-	
+
 	hasNext=0;
 
 	tcLeft=TabControl->Left;
@@ -344,7 +344,7 @@ void SelectTab(const struct CGUIConstItem *Tab)
 			RightBound=tcRight-xWidth-4;
 		}
 
-		if (CurrentTab==Tab && CurrentTab->Additional->IsEnabled) 
+		if (CurrentTab==Tab && CurrentTab->Additional->IsEnabled)
 		{
 			if (TabIsFirst)
 			{
@@ -354,7 +354,7 @@ void SelectTab(const struct CGUIConstItem *Tab)
 			else
 			{
 				BoxXor(CurrentX+2,tcTop+2,xLength+3,dh-2);
-				hLineXor(CurrentX+3,tcTop+1,xLength+1);				
+				hLineXor(CurrentX+3,tcTop+1,xLength+1);
 			}
 			return;
 		}
