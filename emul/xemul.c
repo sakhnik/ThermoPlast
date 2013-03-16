@@ -190,6 +190,7 @@ main(int argc, char* argv[])
 	Window win;
 	char *display_name = getenv("DISPLAY");
 	GC gc, rev_gc;
+    Atom wmDelete;
 	struct CEventDescriptor event =
 	{
 		.Type = EVENT_NULL
@@ -208,6 +209,8 @@ main(int argc, char* argv[])
 	}
 
 	win = create_simple_window(display, SCREEN_WIDTH, SCREEN_HEIGHT, 0, 0);
+	wmDelete = XInternAtom(display, "WM_DELETE_WINDOW", True);
+	XSetWMProtocols(display, win, &wmDelete, 1);
 
 	gc = create_gc(display, win, 0);
 	rev_gc = create_gc(display, win, 1);
@@ -233,6 +236,10 @@ main(int argc, char* argv[])
 				case KeyPress:
 					done = handle_key_down(display, gc, rev_gc,
 							(XKeyEvent*)&an_event.xkey);
+					break;
+
+				case ClientMessage:
+					done = True;
 					break;
 
 				default:
