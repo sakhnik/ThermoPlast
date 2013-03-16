@@ -60,8 +60,8 @@ void DrawEditBox(const struct CGUIConstItem *Edit)
 	siHeight=Edit->Height;
 
 	ClearBox(siLeft+1,siTop+1,siWidth-2,siHeight-1);
-	// EditBox Ð²Ð¸ÐºÐ¾Ñ€Ð¸ÑÑ‚Ð¾Ð²ÑƒÑ”Ñ‚ÑŒÑÑ Ñ‚Ð°ÐºÐ¾Ð¶ Ð´Ð»Ñ Ð¿Ñ€Ð¾Ð¼Ð°Ð»ÑŒÐ¾Ð²ÑƒÐ²Ð°Ð½Ð½Ñ ÐºÐ¾Ð¼Ñ–Ñ€Ð¾Ðº Ñ‚Ð°Ð±Ð»Ð¸Ñ†Ñ–,
-	// Ð° Ð´Ð»Ñ Ð½Ð¸Ñ… Ð½Ðµ Ñ‚Ñ€ÐµÐ±Ð° Ñ€Ð°Ð¼ÐºÐ°
+	// EditBox âèêîðèñòîâóºòüñÿ òàêîæ äëÿ ïðîìàëüîâóâàííÿ êîì³ðîê òàáëèö³,
+	// à äëÿ íèõ íå òðåáà ðàìêà
 	if (Edit->Owner->Kind!=IDK_TABLE)
 		RectangleSet(siLeft,siTop,siWidth+1,siHeight+1);
 	if (Edit->Additional->IsEnabled)

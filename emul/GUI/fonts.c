@@ -2,17 +2,17 @@
 #include "fonts.h"
 
 /*********************************************************************
- *  Р¤СѓРЅРєС†С–С— РґР»СЏ СЂРѕР±РѕС‚Рё Р·С– С€СЂРёС„С‚Р°РјРё.                                  *
- * РћСЃРєС–Р»СЊРєРё РїРµСЂРµРґР±Р°С‡Р°С”С‚СЊСЃСЏ РЅРёР·СЊРєРѕСЂС–РІРЅРµРІРёР№ С–РЅС‚РµСЂС„РµР№СЃ РїСЂРёРєР»Р°РґРЅРѕРіРѕ РїСЂРѕ- *
- * РіСЂР°РјСѓРІР°РЅРЅСЏ Сѓ С‚Р°РєС–Р№ СЃРёСЃС‚РµРјС–, С–РјРѕРІС–СЂРЅРѕ, РІРѕРЅРё РЅС–РєРѕР»Рё РЅРµ Р±СѓРґСѓС‚СЊ       *
- * РІРёРєРѕСЂРёСЃС‚Р°РЅС–, РїСЂРѕС‚Рµ СЏРєС‰Рѕ РІРёРЅРёРєРЅРµ С‚Р°РєР° РїРѕС‚СЂРµР±Р°, РїСЂРѕСЃС‚Рѕ СЂРѕР·РєРѕРјРµРЅС‚СѓР№С‚Рµ*
- * РЅРµРѕР±С…С–РґРЅСѓ С„СѓРЅРєС†С–СЋ                                                 *
+ *  Функції для роботи зі шрифтами.                                  *
+ * Оскільки передбачається низькорівневий інтерфейс прикладного про- *
+ * грамування у такій системі, імовірно, вони ніколи не будуть       *
+ * використані, проте якщо виникне така потреба, просто розкоментуйте*
+ * необхідну функцію                                                 *
  *********************************************************************/
 
 unsigned int len;
 
 /*********************************************************************
- * Р¤СѓРЅРєС†С–СЏ РїРѕРІРµСЂС‚Р°С” РІРёСЃРѕС‚Сѓ РѕРґРЅРѕРіРѕ Р· РІС–РґРѕРјРёС… С–С— С€СЂРёС„С‚С–РІ               *
+ * Функція повертає висоту одного з відомих ії шрифтів               *
  *********************************************************************/
 /*unsigned char GetFontHeight(const unsigned char *font)
 {
@@ -24,7 +24,7 @@ unsigned int len;
 }*/
 
 /*********************************************************************
- * Р¤СѓРЅРєС†С–СЏ РїРѕРІРµСЂС‚Р°С” С€РёСЂРёРЅСѓ РѕРґРЅРѕРіРѕ Р· РІС–РґРѕРјРёС… С–С— С€СЂРёС„С‚С–РІ               *
+ * Функція повертає ширину одного з відомих ії шрифтів               *
  *********************************************************************/
 /*unsigned char GetFontWidth(const unsigned char *font)
 {
@@ -34,7 +34,7 @@ unsigned int len;
 }*/
 
 /*********************************************************************
- * Р¤СѓРЅРєС†С–СЏ РїРѕРІРµСЂС‚Р°С” РґРѕРІР¶РёРЅСѓ СЃРёРјРІРѕР»СЊРЅРѕРіРѕ СЂСЏРґРєР° Сѓ РїС–РєСЃРµР»СЏС…             *
+ * Функція повертає довжину символьного рядка у пікселях             *
  *********************************************************************/
 unsigned int GetStringLength(const unsigned char *font, const unsigned char *s)
 {
@@ -52,14 +52,14 @@ unsigned char *DrawAddr;
 const unsigned char *DrawFontSrc;
 unsigned char draw_bit, draw_base, draw_mask, draw_j;
 /********************************************************************
- * Р¤СѓРЅРєС†С–СЏ РјР°Р»СЋС” СЃРёРјРІРѕР»СЊРЅРёР№ СЂСЏРґРѕРє.                                  *
- * РџР°СЂР°РјРµС‚СЂРё:                                                       *
- *   x, y -- РЅРµРІС–Рґ"С”РјРЅС– РєРѕРѕСЂРґРёРЅР°С‚Рё Р»С–РІРѕРіРѕ РІРµСЂС…РЅСЊРѕРіРѕ РєСѓС‚Р° РїСЂСЏРјРѕРєСѓС‚-  *
- *           РЅРёРєР°, Сѓ СЏРєРёР№ С‚СЂРµР±Р° РЅР°РјР°Р»СЋРІР°С‚Рё СЂСЏРґРѕРє                    *
- *   str  -- РІРєР°Р·С–РІРЅРёРє РЅР° СЃР°Рј СЂСЏРґРѕРє                                 *
- *   font --  С€СЂРёС„С‚, СЏРєРёР№ С‚СЂРµР±Р° РІРёРєРѕСЂРёСЃС‚Р°С‚Рё                         *
- * РґР»СЏ РїСЂРёСЃРєРѕСЂРµРЅРЅСЏ СЂРѕР±РѕС‚Рё РІСЃС– С‚С–Р»Р° BitCpy Р· РЅРµРѕР±С…С–РґРЅРёРјРё Р·РјС–РЅР°РјРё     *
- * РїРµСЂРµРЅРµСЃРµРЅС– РІСЃРµСЂРµРґРёРЅСѓ С„СѓРЅРєС†С–С—                                     *
+ * Функція малює символьний рядок.                                  *
+ * Параметри:                                                       *
+ *   x, y -- невід"ємні координати лівого верхнього кута прямокут-  *
+ *           ника, у який треба намалювати рядок                    *
+ *   str  -- вказівник на сам рядок                                 *
+ *   font --  шрифт, який треба використати                         *
+ * для прискорення роботи всі тіла BitCpy з необхідними змінами     *
+ * перенесені всередину функції                                     *
  ********************************************************************/
 void DrawString(unsigned int x, unsigned int y,
 				const unsigned char *str, const unsigned char *font)
@@ -97,10 +97,10 @@ void DrawString(unsigned int x, unsigned int y,
 					*DrawAddr++ = (((*DrawAddr) & draw_mask) | (((*DrawFontSrc) &0x0f) << draw_bit));
 					DrawFontSrc++;
 
-					DrawAddr += draw_base; // РЅР°СЃС‚СѓРїРЅРёР№ СЂСЏРґРѕРє
+					DrawAddr += draw_base; // наступний рядок
 					if (DrawAddr >= VideoRam + SCREEN_TOTAL)
 					{
-				// Р”РѕСЃСЏРіРЅСѓС‚Рѕ РЅРёР¶РЅСЊРѕС— РїРѕР»РѕРІРёРЅРё РµРєСЂР°РЅР°
+				// Досягнуто нижньої половини екрана
 						DrawAddr-=SCREEN_TOTAL;
 						draw_bit+=4;
 						draw_mask = draw_mask >> 4;
@@ -137,10 +137,10 @@ void DrawString(unsigned int x, unsigned int y,
 					*DrawAddr++ = (((*DrawAddr) & draw_mask) | (((*DrawFontSrc) &0x0f) << draw_bit));
 					DrawFontSrc++;
 
-					DrawAddr += draw_base; // РЅР°СЃС‚СѓРїРЅРёР№ СЂСЏРґРѕРє
+					DrawAddr += draw_base; // наступний рядок
 					if (DrawAddr >= VideoRam + SCREEN_TOTAL)
 					{
-				// Р”РѕСЃСЏРіРЅСѓС‚Рѕ РЅРёР¶РЅСЊРѕС— РїРѕР»РѕРІРёРЅРё РµРєСЂР°РЅР°
+				// Досягнуто нижньої половини екрана
 						DrawAddr-=SCREEN_TOTAL;
 						draw_bit+=4;
 						draw_mask = draw_mask >> 4;
@@ -177,10 +177,10 @@ void DrawString(unsigned int x, unsigned int y,
 					*DrawAddr++ = (((*DrawAddr) & draw_mask) | (((*DrawFontSrc) &0x0f) << draw_bit));
 					DrawFontSrc++;
 
-					DrawAddr += draw_base; // РЅР°СЃС‚СѓРїРЅРёР№ СЂСЏРґРѕРє
+					DrawAddr += draw_base; // наступний рядок
 					if (DrawAddr >= VideoRam + SCREEN_TOTAL)
 					{
-				// Р”РѕСЃСЏРіРЅСѓС‚Рѕ РЅРёР¶РЅСЊРѕС— РїРѕР»РѕРІРёРЅРё РµРєСЂР°РЅР°
+				// Досягнуто нижньої половини екрана
 						DrawAddr-=SCREEN_TOTAL;
 						draw_bit+=4;
 						draw_mask = draw_mask >> 4;
@@ -195,14 +195,14 @@ void DrawString(unsigned int x, unsigned int y,
 }
 
 /********************************************************************
- * Р¤СѓРЅРєС†С–СЏ РјР°Р»СЋС” СЃРёРјРІРѕР»СЊРЅРёР№ СЂСЏРґРѕРє.                                  *
- * РџР°СЂР°РјРµС‚СЂРё:                                                       *
- *   x, y -- РЅРµРІС–Рґ"С”РјРЅС– РєРѕРѕСЂРґРёРЅР°С‚Рё Р»С–РІРѕРіРѕ РІРµСЂС…РЅСЊРѕРіРѕ РєСѓС‚Р° РїСЂСЏРјРѕРєСѓС‚-  *
- *           РЅРёРєР°, Сѓ СЏРєРёР№ С‚СЂРµР±Р° РЅР°РјР°Р»СЋРІР°С‚Рё СЂСЏРґРѕРє                    *
- *   str  -- РІРєР°Р·С–РІРЅРёРє РЅР° СЃР°Рј СЂСЏРґРѕРє                                 *
- *   font --  С€СЂРёС„С‚, СЏРєРёР№ С‚СЂРµР±Р° РІРёРєРѕСЂРёСЃС‚Р°С‚Рё                         *
- * РґР»СЏ РїСЂРёСЃРєРѕСЂРµРЅРЅСЏ СЂРѕР±РѕС‚Рё РІСЃС– С‚С–Р»Р° BitCpy Р· РЅРµРѕР±С…С–РґРЅРёРјРё Р·РјС–РЅР°РјРё     *
- * РїРµСЂРµРЅРµСЃРµРЅС– РІСЃРµСЂРµРґРёРЅСѓ С„СѓРЅРєС†С–С—                                     *
+ * Функція малює символьний рядок.                                  *
+ * Параметри:                                                       *
+ *   x, y -- невід"ємні координати лівого верхнього кута прямокут-  *
+ *           ника, у який треба намалювати рядок                    *
+ *   str  -- вказівник на сам рядок                                 *
+ *   font --  шрифт, який треба використати                         *
+ * для прискорення роботи всі тіла BitCpy з необхідними змінами     *
+ * перенесені всередину функції                                     *
  ********************************************************************/
 void DrawStringInv(unsigned int x, unsigned int y,
 				const unsigned char *str, const unsigned char *font)
@@ -237,10 +237,10 @@ void DrawStringInv(unsigned int x, unsigned int y,
 						| ((((unsigned char)~ *DrawFontSrc) &0x0f) << draw_bit));
 					DrawFontSrc++;
 
-					DrawAddr += draw_base; // РЅР°СЃС‚СѓРїРЅРёР№ СЂСЏРґРѕРє
+					DrawAddr += draw_base; // наступний рядок
 					if (DrawAddr >= VideoRam + SCREEN_TOTAL)
 					{
-				// Р”РѕСЃСЏРіРЅСѓС‚Рѕ РЅРёР¶РЅСЊРѕС— РїРѕР»РѕРІРёРЅРё РµРєСЂР°РЅР°
+				// Досягнуто нижньої половини екрана
 						DrawAddr-=SCREEN_TOTAL;
 						draw_bit+=4;
 						draw_mask = draw_mask >> 4;
@@ -278,10 +278,10 @@ void DrawStringInv(unsigned int x, unsigned int y,
 						| ((((unsigned char)~ *DrawFontSrc) &0x0f) << draw_bit));
 					DrawFontSrc++;
 
-					DrawAddr += draw_base; // РЅР°СЃС‚СѓРїРЅРёР№ СЂСЏРґРѕРє
+					DrawAddr += draw_base; // наступний рядок
 					if (DrawAddr >= VideoRam + SCREEN_TOTAL)
 					{
-				// Р”РѕСЃСЏРіРЅСѓС‚Рѕ РЅРёР¶РЅСЊРѕС— РїРѕР»РѕРІРёРЅРё РµРєСЂР°РЅР°
+				// Досягнуто нижньої половини екрана
 						DrawAddr-=SCREEN_TOTAL;
 						draw_bit+=4;
 						draw_mask = draw_mask >> 4;
@@ -318,10 +318,10 @@ void DrawStringInv(unsigned int x, unsigned int y,
 						| ((((unsigned char)~ *DrawFontSrc) &0x0f) << draw_bit));
 					DrawFontSrc++;
 
-					DrawAddr += draw_base; // РЅР°СЃС‚СѓРїРЅРёР№ СЂСЏРґРѕРє
+					DrawAddr += draw_base; // наступний рядок
 					if (DrawAddr >= VideoRam + SCREEN_TOTAL)
 					{
-				// Р”РѕСЃСЏРіРЅСѓС‚Рѕ РЅРёР¶РЅСЊРѕС— РїРѕР»РѕРІРёРЅРё РµРєСЂР°РЅР°
+				// Досягнуто нижньої половини екрана
 						DrawAddr-=SCREEN_TOTAL;
 						draw_bit+=4;
 						draw_mask = draw_mask >> 4;
@@ -855,7 +855,7 @@ const unsigned char font8x8[256 * 8] =
 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00
 };
 
-/*РіСћТђВ«РЃР·ТђВ­В­Р»В© РёР°РЃРґРІ*/
+/*гўҐ«ЁзҐ­­л© иаЁдв*/
 const unsigned char font8x16[256*16] =
 {
 // line 0x0000
@@ -2146,9 +2146,9 @@ const unsigned char font8x8lite[256*8]=
 
 /*
 
-//---------------------Р„В Р°РІРЃВ­Р„РЃ---------------------------------------------
+//---------------------Є авЁ­ЄЁ---------------------------------------------
 
-const unsigned char pic_delta[34] =//В¤ТђВ«РјРІВ  вЂ™
+const unsigned char pic_delta[34] =//¤Ґ«мв  ’
 {16,16,
      0x00,0x21,0xbe,0x73,
      0xdc,0xf3,0xe9,0xf3,
@@ -2160,7 +2160,7 @@ const unsigned char pic_delta[34] =//В¤ТђВ«РјРІВ  вЂ™
      0xff,0xff,0xff,0xff,
 };
 
-const unsigned char pic_cl_small[34] = //Р·В Р±Р»
+const unsigned char pic_cl_small[34] = //з бл
 {16,16,
      0xfc,0x1f,0xfb,0x6f,
      0xf7,0xf7,0xef,0xfb,
@@ -2172,7 +2172,7 @@ const unsigned char pic_cl_small[34] = //Р·В Р±Р»
      0xff,0xff,0xff,0xff,
 };
 
-const unsigned char pic_oil[34] =//В¬В Р±В«В® РЋВ Р„
+const unsigned char pic_oil[34] =//¬ б«® Ў Є
 {16,16,
      0xff,0xff,0xe0,0x0f,
      0xef,0xef,0xd9,0x37,
@@ -2184,7 +2184,7 @@ const unsigned char pic_oil[34] =//В¬В Р±В«В® РЋВ Р„
      0xff,0xff,0xff,0xff,
 };
 
-const unsigned char c1_1[50] = //РЃР±РµВ®В¤В­В®Тђ Р‡В®В«В®В¦ТђВ­РЃТђ Р‡В®В¤СћРЃВ¦В­В®В© Р‡В«РЃРІР»
+const unsigned char c1_1[50] = //Ёбе®¤­®Ґ Ї®«®¦Ґ­ЁҐ Ї®¤ўЁ¦­®© Ї«Ёвл
 {24,16,
      0xfe,0x7f,0xff,0xfe,0x7f,0xff,
      0xfc,0x3f,0xff,0xf1,0x80,0x0f,
@@ -2196,7 +2196,7 @@ const unsigned char c1_1[50] = //РЃР±РµВ®В¤В­В®Тђ Р‡В®В«В®В¦ТђВ­РЃТђ Р‡В®В¤СћРЃВ
      0xfe,0x77,0xef,0xfe,0x71,0x8f,
 };
 
-const unsigned char c1_2[50] = //Р‡В®В¤Р±Р„В®Р„ В¤В«Рї В Р°В¬В РІРіР°Р»
+const unsigned char c1_2[50] = //Ї®¤бЄ®Є ¤«п  а¬ вгал
 {24,16,
      0xf9,0xfd,0x9f,0xf9,0xfc,0x9f,
      0xf8,0x00,0x1f,0xf9,0xfc,0x9f,
@@ -2208,7 +2208,7 @@ const unsigned char c1_2[50] = //Р‡В®В¤Р±Р„В®Р„ В¤В«Рї В Р°В¬В РІРіР°Р»
      0xf9,0xe7,0x9f,0xf9,0xef,0x9f,
 };
 
-const unsigned char c1_3[50] = //В§В Р№РЃРІВ  РЃВ­Р±РІР°РіВ¬ТђВ­РІВ  (СћР„В«РѕР·ТђВ­РЃТђ)
+const unsigned char c1_3[50] = //§ йЁв  Ё­бваг¬Ґ­в  (ўЄ«озҐ­ЁҐ)
 {24,16,
      0xff,0xff,0xff,0xf8,0xff,0x1f,
      0xfb,0xff,0xdf,0xfb,0xbf,0xdf,
@@ -2220,7 +2220,7 @@ const unsigned char c1_3[50] = //В§В Р№РЃРІВ  РЃВ­Р±РІР°РіВ¬ТђВ­РІВ  (СћР„В«РѕР·
      0xf8,0xff,0x1f,0xff,0xff,0xff,
 };
 
-const unsigned char c1_4[50] = //Р„В®В­ТђР¶ В§В Р№РЃРІР» РЃВ­Р±РІР°РіВ¬ТђВ­РІВ 
+const unsigned char c1_4[50] = //Є®­Ґж § йЁвл Ё­бваг¬Ґ­в 
 {24,16,
      0xff,0xff,0xff,0xff,0xc7,0xff,
      0xff,0xc7,0xff,0xff,0xc7,0xff,
@@ -2232,7 +2232,7 @@ const unsigned char c1_4[50] = //Р„В®В­ТђР¶ В§В Р№РЃРІР» РЃВ­Р±РІР°РіВ¬ТђВ­РІВ 
      0xff,0xc7,0xff,0xff,0xff,0xff,
 };
 
-const unsigned char c1_5[50] = //Р‡В®В«В­В®Тђ В§В Р‡РЃР°В В­РЃТђ СћР»Р‡В®В«В­ТђВ­В®
+const unsigned char c1_5[50] = //Ї®«­®Ґ § ЇЁа ­ЁҐ ўлЇ®«­Ґ­®
 {24,16,
      0xfc,0x3c,0x3f,0xfd,0xff,0xbf,
      0xfd,0xff,0xbf,0xfd,0xff,0xbf,
@@ -2244,7 +2244,7 @@ const unsigned char c1_5[50] = //Р‡В®В«В­В®Тђ В§В Р‡РЃР°В В­РЃТђ СћР»Р‡В®В«В­ТђВ
      0xfd,0xff,0xbf,0xfc,0x3c,0x3f,
 };
 
-const unsigned char c1_6_2[50] = //РІВ®Р°В¬В®В¦ТђВ­РЃТђ Р‡Р°РЃ Р°В Р±Р„Р°Р»РІРЃРЃ
+const unsigned char c1_6_2[50] = //в®а¬®¦Ґ­ЁҐ ЇаЁ а бЄалвЁЁ
 {24,16,
      0xff,0xff,0xff,0xef,0xff,0xff,
      0xcf,0xff,0xff,0x80,0xff,0xff,
@@ -2256,7 +2256,7 @@ const unsigned char c1_6_2[50] = //РІВ®Р°В¬В®В¦ТђВ­РЃТђ Р‡Р°РЃ Р°В Р±Р„Р°Р»РІРЃР
      0xff,0xff,0xdf,0xff,0xff,0xff,
 };
 
-const unsigned char c2_1[50] = //Р„В®В­ТђР¶ СћР‡Р°Р»Р±Р„В , В­В Р·В В«В® РґВ®Р°В¬В®СћВ В­РЃРї
+const unsigned char c2_1[50] = //Є®­Ґж ўЇалбЄ , ­ з «® д®а¬®ў ­Ёп
 {24,16,
     0xdf,0xff,0xff,0xdb,0xff,0xff,
     0xd3,0xff,0xff,0xc0,0x00,0x01,
@@ -2269,7 +2269,7 @@ const unsigned char c2_1[50] = //Р„В®В­ТђР¶ СћР‡Р°Р»Р±Р„В , В­В Р·В В«В® РґВ®Р°В
 };
 
 
-const unsigned char c2_2[50] = //СћРІВ®Р°В Рї Р±РІРіР‡ТђВ­Рј СћР‡Р°Р»Р±Р„В 
+const unsigned char c2_2[50] = //ўв®а п бвгЇҐ­м ўЇалбЄ 
 {24,16,
     0xff,0xff,0xff,0xfb,0xff,0xc1,
     0xf3,0xff,0xeb,0xe0,0x00,0xeb,
@@ -2281,7 +2281,7 @@ const unsigned char c2_2[50] = //СћРІВ®Р°В Рї Р±РІРіР‡ТђВ­Рј СћР‡Р°Р»Р±Р„В 
     0xfe,0x00,0x01,0xff,0xff,0xff,
 };
 
-const unsigned char c2_3[50] = //СћРІВ®Р°В Рї Р±РІРіР‡ТђВ­Рј В§В Р€Р°РіВ§Р„РЃ
+const unsigned char c2_3[50] = //ўв®а п бвгЇҐ­м § Јаг§ЄЁ
 {24,16,
     0xff,0xff,0xff,0xff,0xf6,0x0f,
     0xff,0xf3,0x5f,0x00,0x01,0x5f,
@@ -2293,7 +2293,7 @@ const unsigned char c2_3[50] = //СћРІВ®Р°В Рї Р±РІРіР‡ТђВ­Рј В§В Р€Р°РіВ§Р„РЃ
     0xe0,0x00,0x31,0xff,0xff,0xff,
 };
 
-const unsigned char c2_4[50] = //В®РЋРєТђВ¬ СћР‡Р°Р»Р±Р„В  (Р„В®В­ТђР¶ В§В Р€Р°РіВ§Р„РЃ)
+const unsigned char c2_4[50] = //®ЎкҐ¬ ўЇалбЄ  (Є®­Ґж § Јаг§ЄЁ)
 {24,16,
      0xe7,0xff,0xff,0xe7,0xff,0xff,
      0xc3,0xff,0xff,0x18,0x00,0x01,
@@ -2305,7 +2305,7 @@ const unsigned char c2_4[50] = //В®РЋРєТђВ¬ СћР‡Р°Р»Р±Р„В  (Р„В®В­ТђР¶ В§В Р€Р°Р
      0xe7,0x80,0x01,0xe7,0xff,0xff,
 };
 
-const unsigned char help[74] = //Р±Р‡Р°В СћР„В 
+const unsigned char help[74] = //бЇа ўЄ 
 {24,24,
      0xff,0xff,0xff,0xff,0x1f,0xff,
      0xfe,0x67,0xff,0xfc,0x79,0xff,
@@ -2321,7 +2321,7 @@ const unsigned char help[74] = //Р±Р‡Р°В СћР„В 
      0xff,0xff,0xff,0xff,0xff,0xff,
 };
 
-const unsigned char dT_n[26] = //"В®РІР„В«."
+const unsigned char dT_n[26] = //"®вЄ«."
 {24,8,
      0x9c,0x6d,0x6b,0x6e,0xeb,0x6f,
      0x6e,0xe7,0x6f,0x6a,0xab,0xaf,
@@ -2329,7 +2329,7 @@ const unsigned char dT_n[26] = //"В®РІР„В«."
      0xff,0xff,0xff,0xff,0xff,0xff,
 };
 
-const unsigned char tahom[26] = //РІВ РµВ®В¬ТђРІР°
+const unsigned char tahom[26] = //в е®¬Ґва
 {24,8,
      0xe0,0x0e,0x7f,0xd2,0x7c,0xf7,
      0x89,0x39,0xe3,0x24,0x93,0xc1,
@@ -2337,7 +2337,7 @@ const unsigned char tahom[26] = //РІВ РµВ®В¬ТђРІР°
      0xe0,0x0c,0xe7,0xff,0xfe,0x0f,
 };
 
-const unsigned char tahom_clear[26] = //РІВ РµВ®В¬ТђРІР° В®Р·РЃР±РІР„В 
+const unsigned char tahom_clear[26] = //в е®¬Ґва ®зЁбвЄ 
 {24,8,
      0xff,0xff,0xff,0xff,0xff,0xff,
      0xff,0xff,0xff,0xff,0xff,0xff,
@@ -2345,7 +2345,7 @@ const unsigned char tahom_clear[26] = //РІВ РµВ®В¬ТђРІР° В®Р·РЃР±РІР„В 
      0xff,0xff,0xff,0xff,0xff,0xff,
 };
 
-const unsigned char mold[18] =//Р±РЃВ¬СћВ®В« Р‡В«РЃРІР»
+const unsigned char mold[18] =//бЁ¬ў®« Ї«Ёвл
 {16,8,
     0xfc,0x47,0xfc,0x47,
     0xfd,0xf7,0xfd,0xf7,
@@ -2353,7 +2353,7 @@ const unsigned char mold[18] =//Р±РЃВ¬СћВ®В« Р‡В«РЃРІР»
     0xfc,0x47,0xfc,0x47,
 };
 
-const unsigned char worm[18] = //Р±РЃВ¬СћВ®В« РёВ­ТђР„В 
+const unsigned char worm[18] = //бЁ¬ў®« и­ҐЄ 
 {16,8,
     0xe0,0x07,0xd2,0x4f,
     0x89,0x27,0x24,0x97,
@@ -2361,7 +2361,7 @@ const unsigned char worm[18] = //Р±РЃВ¬СћВ®В« РёВ­ТђР„В 
     0xe0,0x07,0xff,0xff,
 };
 
-const unsigned char clear[74] = //Р‡РіР±РІР»РёР„В 
+const unsigned char clear[74] = //ЇгбвлиЄ 
 {24,24,
     0xff,0xff,0xff,0xff,0xff,0xff,
     0xff,0xff,0xff,0xff,0xff,0xff,
@@ -2378,7 +2378,7 @@ const unsigned char clear[74] = //Р‡РіР±РІР»РёР„В 
    0xff,0xff,0xff,0xff,0xff,0xff,
 };
 
-const unsigned char clear16_24[50] = //Р‡РіР±РІР»РёР„В 
+const unsigned char clear16_24[50] = //ЇгбвлиЄ 
 {24,16,
     0xff,0xff,0xff,0xff,0xff,0xff,
     0xff,0xff,0xff,0xff,0xff,0xff,
@@ -2390,7 +2390,7 @@ const unsigned char clear16_24[50] = //Р‡РіР±РІР»РёР„В 
     0xff,0xff,0xff,0xff,0xff,0xff,
 };
 
-const unsigned char clear24_32[114] =//Р‡РіР±РІР»РёР„В  Р°В В§В¬ТђР°В®В¬ 24x32
+const unsigned char clear24_32[114] =//ЇгбвлиЄ  а §¬Ґа®¬ 24x32
 {32,24,
     0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,
     0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,
@@ -2407,7 +2407,7 @@ const unsigned char clear24_32[114] =//Р‡РіР±РІР»РёР„В  Р°В В§В¬ТђР°В®В¬ 24x32
 
 };
 
-const unsigned char nozzle3_1[50] = //РЃР±РµВ®В¤В­В®Тђ Р‡В®В«В®В¦ТђВ­РЃТђ Р±В®Р‡В«В 
+const unsigned char nozzle3_1[50] = //Ёбе®¤­®Ґ Ї®«®¦Ґ­ЁҐ б®Ї« 
 {24,16,
 
         0xcf,0xff,0xff, 0x87,0xff,0xff,
@@ -2425,7 +2425,7 @@ const unsigned char nozzle3_1[50] = //РЃР±РµВ®В¤В­В®Тђ Р‡В®В«В®В¦ТђВ­РЃТђ Р±В®Р‡
 
 
 
-const unsigned char nozzle3_2[50] = //Р‡ТђР°ТђВ¤В­ТђТђ Р‡В®В«В®В¦ТђВ­РЃТђ Р±В®Р‡В«В 
+const unsigned char nozzle3_2[50] = //ЇҐаҐ¤­ҐҐ Ї®«®¦Ґ­ЁҐ б®Ї« 
 {24,16,
         0x7f,0xff,0xff, 0x6f,0xff,0xff,
         0x4f,0xff,0xff, 0x00,0x00,0x00,

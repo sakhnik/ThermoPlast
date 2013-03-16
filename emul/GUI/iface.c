@@ -1179,7 +1179,7 @@ const struct CGUIConstItem ConstDeskTop[TOTAL_GUI_ITEMS_COUNT] =
 
 	{IDK_LABEL, ID_TEST_LTEST,
 	132, 25, 64, 16,
-	"╨П╨░┬о╤Ю╥Р╨░╨Д┬а", "",
+	"Проверка", "",
 	NULL, // Common Items cannot contain
 	ConstDeskTop + ID_TEST_FORMTEST, // Owner
 	&test_LTestAdditional, // Additional data
@@ -1296,7 +1296,7 @@ const struct CGUIConstItem ConstDeskTop[TOTAL_GUI_ITEMS_COUNT] =
 
 	{IDK_LABEL, ID_TEST_LVERSION,
 	164, 49, 112, 16,
-	"тАЪ╥Р╨░╨▒╨Б╨┐ 1.0╨О╥Р╨▓┬а", "",
+	"Версия 1.0бета", "",
 	NULL, // Common Items cannot contain
 	ConstDeskTop + ID_TEST_FORMTEST, // Owner
 	&test_LVersionAdditional, // Additional data
@@ -1305,7 +1305,7 @@ const struct CGUIConstItem ConstDeskTop[TOTAL_GUI_ITEMS_COUNT] =
 
 	{IDK_LABEL, ID_TEST_LNAME,
 	140, 65, 152, 16,
-	"тАЬ╨З╨░┬а╤Ю┬л╨┐╨╛╨╣╨Б╥Р ╨▒╨Б╨▒╨▓╥Р┬м╨╗", "",
+	"Управляющие системы", "",
 	NULL, // Common Items cannot contain
 	ConstDeskTop + ID_TEST_FORMTEST, // Owner
 	&test_LNameAdditional, // Additional data
@@ -1332,7 +1332,7 @@ const struct CGUIConstItem ConstDeskTop[TOTAL_GUI_ITEMS_COUNT] =
 
 	{IDK_LABEL, ID_TEST_LAUTHOR,
 	164, 105, 120, 16,
-	"тАШ┬а╨╡┬н╨Б╨Д ╨В┬н┬а╨▓┬о┬л╨Б┬й", "",
+	"Сахник Анатолий", "",
 	NULL, // Common Items cannot contain
 	ConstDeskTop + ID_TEST_FORMTEST, // Owner
 	&test_LAuthorAdditional, // Additional data
@@ -1350,7 +1350,7 @@ const struct CGUIConstItem ConstDeskTop[TOTAL_GUI_ITEMS_COUNT] =
 
 	{IDK_LABEL, ID_TEST_LCITY,
 	180, 135, 80, 16,
-	"╨Й╨Б╥Р╤Ю, 2003", "",
+	"Киев, 2003", "",
 	NULL, // Common Items cannot contain
 	ConstDeskTop + ID_TEST_FORMTEST, // Owner
 	&test_LCityAdditional, // Additional data
@@ -1737,7 +1737,7 @@ const struct CGUIConstItem ConstDeskTop[TOTAL_GUI_ITEMS_COUNT] =
 
 	{IDK_BUTTON, ID_TEST_BTESTOUT,
 	28, 176, 80, 24,
-	"тАЩ╥Р╨▒╨▓\n╤Ю╨╗╨╡┬о┬д┬о╤Ю", "",
+	"Тест\nвыходов", "",
 	NULL, // A Button cannot contain
 	ConstDeskTop + ID_TEST_FORMTEST, // Owner
 	&test_BTestOutAdditional, // Additional data
@@ -1818,7 +1818,7 @@ const struct CGUIConstItem ConstDeskTop[TOTAL_GUI_ITEMS_COUNT] =
 
 	{IDK_BUTTON, ID_TEST_BEXIT,
 	244, 176, 48, 24,
-	"тАЪтА║тАв", "",
+	"ВЫХ", "",
 	NULL, // A Button cannot contain
 	ConstDeskTop + ID_TEST_FORMTEST, // Owner
 	&test_BExitAdditional, // Additional data
@@ -1834,7 +1834,7 @@ const struct CGUIConstItem ConstDeskTop[TOTAL_GUI_ITEMS_COUNT] =
 
 	{IDK_LABEL, ID_TEMPERATURE_LTEMPERATURE,
 	76, 21, 168, 16,
-	"╨М┬а╨▒╨▓╨░┬о┬й╨Д┬а ╨▓╥Р┬м╨З╥Р╨░┬а╨▓╨│╨░╨╗", "",
+	"Настройка температуры", "",
 	NULL, // Common Items cannot contain
 	ConstDeskTop + ID_TEMPERATURE_FORMT, // Owner
 	&Temperature_LTemperatureAdditional, // Additional data
@@ -1843,7 +1843,7 @@ const struct CGUIConstItem ConstDeskTop[TOTAL_GUI_ITEMS_COUNT] =
 
 	{IDK_LABEL, ID_TEMPERATURE_LC1,
 	68, 53, 56, 8,
-	"╨Й┬а┬н┬а┬л 1", "",
+	"Канал 1", "",
 	NULL, // Common Items cannot contain
 	ConstDeskTop + ID_TEMPERATURE_FORMT, // Owner
 	&Temperature_LC1Additional, // Additional data
@@ -1852,7 +1852,7 @@ const struct CGUIConstItem ConstDeskTop[TOTAL_GUI_ITEMS_COUNT] =
 
 	{IDK_LABEL, ID_TEMPERATURE_LC2,
 	68, 63, 56, 8,
-	"╨Й┬а┬н┬а┬л 2", "",
+	"Канал 2", "",
 	NULL, // Common Items cannot contain
 	ConstDeskTop + ID_TEMPERATURE_FORMT, // Owner
 	&Temperature_LC2Additional, // Additional data
@@ -1861,7 +1861,7 @@ const struct CGUIConstItem ConstDeskTop[TOTAL_GUI_ITEMS_COUNT] =
 
 	{IDK_LABEL, ID_TEMPERATURE_LC3,
 	68, 73, 56, 8,
-	"╨Й┬а┬н┬а┬л 3", "",
+	"Канал 3", "",
 	NULL, // Common Items cannot contain
 	ConstDeskTop + ID_TEMPERATURE_FORMT, // Owner
 	&Temperature_LC3Additional, // Additional data
@@ -1870,7 +1870,7 @@ const struct CGUIConstItem ConstDeskTop[TOTAL_GUI_ITEMS_COUNT] =
 
 	{IDK_LABEL, ID_TEMPERATURE_LC4,
 	68, 83, 56, 8,
-	"╨Й┬а┬н┬а┬л 4", "",
+	"Канал 4", "",
 	NULL, // Common Items cannot contain
 	ConstDeskTop + ID_TEMPERATURE_FORMT, // Owner
 	&Temperature_LC4Additional, // Additional data
@@ -1879,7 +1879,7 @@ const struct CGUIConstItem ConstDeskTop[TOTAL_GUI_ITEMS_COUNT] =
 
 	{IDK_LABEL, ID_TEMPERATURE_LC5,
 	68, 93, 56, 8,
-	"╨Й┬а┬н┬а┬л 5", "",
+	"Канал 5", "",
 	NULL, // Common Items cannot contain
 	ConstDeskTop + ID_TEMPERATURE_FORMT, // Owner
 	&Temperature_LC5Additional, // Additional data
@@ -1888,7 +1888,7 @@ const struct CGUIConstItem ConstDeskTop[TOTAL_GUI_ITEMS_COUNT] =
 
 	{IDK_LABEL, ID_TEMPERATURE_LC6,
 	68, 103, 56, 8,
-	"╨Й┬а┬н┬а┬л 6", "",
+	"Канал 6", "",
 	NULL, // Common Items cannot contain
 	ConstDeskTop + ID_TEMPERATURE_FORMT, // Owner
 	&Temperature_LC6Additional, // Additional data
@@ -1897,7 +1897,7 @@ const struct CGUIConstItem ConstDeskTop[TOTAL_GUI_ITEMS_COUNT] =
 
 	{IDK_LABEL, ID_TEMPERATURE_LC7,
 	68, 113, 56, 8,
-	"╨Й┬а┬н┬а┬л 7", "",
+	"Канал 7", "",
 	NULL, // Common Items cannot contain
 	ConstDeskTop + ID_TEMPERATURE_FORMT, // Owner
 	&Temperature_LC7Additional, // Additional data
@@ -1906,7 +1906,7 @@ const struct CGUIConstItem ConstDeskTop[TOTAL_GUI_ITEMS_COUNT] =
 
 	{IDK_LABEL, ID_TEMPERATURE_LC8,
 	68, 123, 56, 8,
-	"╨Й┬а┬н┬а┬л 8", "",
+	"Канал 8", "",
 	NULL, // Common Items cannot contain
 	ConstDeskTop + ID_TEMPERATURE_FORMT, // Owner
 	&Temperature_LC8Additional, // Additional data
@@ -1915,7 +1915,7 @@ const struct CGUIConstItem ConstDeskTop[TOTAL_GUI_ITEMS_COUNT] =
 
 	{IDK_LABEL, ID_TEMPERATURE_LCA,
 	68, 134, 48, 8,
-	"тАЪ┬м╥Р╨▒╨▓╥Р", "",
+	"Вместе", "",
 	NULL, // Common Items cannot contain
 	ConstDeskTop + ID_TEMPERATURE_FORMT, // Owner
 	&Temperature_LCAAdditional, // Additional data
@@ -1960,7 +1960,7 @@ const struct CGUIConstItem ConstDeskTop[TOTAL_GUI_ITEMS_COUNT] =
 
 	{IDK_LABEL, ID_TEMPERATURE_LMINOILT,
 	68, 153, 136, 8,
-	"╨К╨Б┬н╨Б┬м┬а┬л╨╝┬н тАЩ ┬м┬а╨▒┬л┬а", "",
+	"Минимальн Т масла", "",
 	NULL, // Common Items cannot contain
 	ConstDeskTop + ID_TEMPERATURE_FORMT, // Owner
 	&Temperature_LMinOilTAdditional, // Additional data
@@ -1969,7 +1969,7 @@ const struct CGUIConstItem ConstDeskTop[TOTAL_GUI_ITEMS_COUNT] =
 
 	{IDK_LABEL, ID_TEMPERATURE_LOILCOOLT,
 	68, 163, 112, 8,
-	"тАЩ ┬о╨╡┬л┬а┬ж┬д ┬м┬а╨▒┬л┬а", "",
+	"Т охлажд масла", "",
 	NULL, // Common Items cannot contain
 	ConstDeskTop + ID_TEMPERATURE_FORMT, // Owner
 	&Temperature_LOilCoolTAdditional, // Additional data
@@ -2338,7 +2338,7 @@ const struct CGUIConstItem ConstDeskTop[TOTAL_GUI_ITEMS_COUNT] =
 
 	{IDK_BUTTON, ID_TEMPERATURE_BPID,
 	68, 180, 48, 24,
-	"╨ПтВмтАЮ", "",
+	"ПИД", "",
 	NULL, // A Button cannot contain
 	ConstDeskTop + ID_TEMPERATURE_FORMT, // Owner
 	&Temperature_BPIDAdditional, // Additional data
@@ -2347,7 +2347,7 @@ const struct CGUIConstItem ConstDeskTop[TOTAL_GUI_ITEMS_COUNT] =
 
 	{IDK_BUTTON, ID_TEMPERATURE_BEXIT,
 	196, 180, 48, 25,
-	"тАЪтА║тАв", "",
+	"ВЫХ", "",
 	NULL, // A Button cannot contain
 	ConstDeskTop + ID_TEMPERATURE_FORMT, // Owner
 	&Temperature_BExitAdditional, // Additional data
@@ -2363,7 +2363,7 @@ const struct CGUIConstItem ConstDeskTop[TOTAL_GUI_ITEMS_COUNT] =
 
 	{IDK_LABEL, ID_LOCK_LTITLE,
 	116, 17, 112, 16,
-	"тАЬ┬з╥Р┬л ┬з┬а╨З╨Б╨░┬а┬н╨Б╨┐", "",
+	"Узел запирания", "",
 	NULL, // Common Items cannot contain
 	ConstDeskTop + ID_LOCK_FORMLOCK, // Owner
 	&Lock_LTitleAdditional, // Additional data
@@ -2381,7 +2381,7 @@ const struct CGUIConstItem ConstDeskTop[TOTAL_GUI_ITEMS_COUNT] =
 
 	{IDK_LABEL, ID_LOCK_LSTART,
 	20, 49, 88, 8,
-	"тАШ╨▓╨░┬а╨И╨Б╤Ю┬а┬н╨Б╥Р", "",
+	"Страгивание", "",
 	NULL, // Common Items cannot contain
 	ConstDeskTop + ID_LOCK_FORMLOCK, // Owner
 	&Lock_LStartAdditional, // Additional data
@@ -2390,7 +2390,7 @@ const struct CGUIConstItem ConstDeskTop[TOTAL_GUI_ITEMS_COUNT] =
 
 	{IDK_LABEL, ID_LOCK_LACCEL1,
 	20, 59, 80, 8,
-	"тАЬ╨▒╨Д┬о╨░╥Р┬н┬н┬о╥Р", "",
+	"Ускоренное", "",
 	NULL, // Common Items cannot contain
 	ConstDeskTop + ID_LOCK_FORMLOCK, // Owner
 	&Lock_LAccel1Additional, // Additional data
@@ -2399,7 +2399,7 @@ const struct CGUIConstItem ConstDeskTop[TOTAL_GUI_ITEMS_COUNT] =
 
 	{IDK_LABEL, ID_LOCK_LPROTECTION,
 	20, 69, 48, 8,
-	"тАб┬а╨╣╨Б╨▓┬а", "",
+	"Защита", "",
 	NULL, // Common Items cannot contain
 	ConstDeskTop + ID_LOCK_FORMLOCK, // Owner
 	&Lock_LProtectionAdditional, // Additional data
@@ -2408,7 +2408,7 @@ const struct CGUIConstItem ConstDeskTop[TOTAL_GUI_ITEMS_COUNT] =
 
 	{IDK_LABEL, ID_LOCK_LFULLLOCK,
 	20, 79, 128, 8,
-	"╨П┬о┬л┬н┬о╥Р ┬з┬а╨З╨Б╨░┬а┬н╨Б╥Р", "",
+	"Полное запирание", "",
 	NULL, // Common Items cannot contain
 	ConstDeskTop + ID_LOCK_FORMLOCK, // Owner
 	&Lock_LFullLockAdditional, // Additional data
@@ -2417,7 +2417,7 @@ const struct CGUIConstItem ConstDeskTop[TOTAL_GUI_ITEMS_COUNT] =
 
 	{IDK_LABEL, ID_LOCK_LSTART1,
 	20, 89, 88, 8,
-	"тАШ╨▓╨░┬а╨И╨Б╤Ю┬а┬н╨Б╥Р", "",
+	"Страгивание", "",
 	NULL, // Common Items cannot contain
 	ConstDeskTop + ID_LOCK_FORMLOCK, // Owner
 	&Lock_LStart1Additional, // Additional data
@@ -2426,7 +2426,7 @@ const struct CGUIConstItem ConstDeskTop[TOTAL_GUI_ITEMS_COUNT] =
 
 	{IDK_LABEL, ID_LOCK_LACCEL,
 	20, 99, 80, 8,
-	"тАЬ╨▒╨Д┬о╨░╥Р┬н┬н┬о╥Р", "",
+	"Ускоренное", "",
 	NULL, // Common Items cannot contain
 	ConstDeskTop + ID_LOCK_FORMLOCK, // Owner
 	&Lock_LAccelAdditional, // Additional data
@@ -2435,7 +2435,7 @@ const struct CGUIConstItem ConstDeskTop[TOTAL_GUI_ITEMS_COUNT] =
 
 	{IDK_LABEL, ID_LOCK_LDECEL,
 	20, 109, 88, 8,
-	"тАб┬а┬м╥Р┬д┬л╥Р┬н┬н┬о╥Р", "",
+	"Замедленное", "",
 	NULL, // Common Items cannot contain
 	ConstDeskTop + ID_LOCK_FORMLOCK, // Owner
 	&Lock_LDecelAdditional, // Additional data
@@ -2453,7 +2453,7 @@ const struct CGUIConstItem ConstDeskTop[TOTAL_GUI_ITEMS_COUNT] =
 
 	{IDK_LABEL, ID_LOCK_LDEGAS,
 	20, 139, 72, 8,
-	"тАЮ╥Р╨И┬а┬з┬а╨╢╨Б╨┐", "",
+	"Дегазация", "",
 	NULL, // Common Items cannot contain
 	ConstDeskTop + ID_LOCK_FORMLOCK, // Owner
 	&Lock_LDegasAdditional, // Additional data
@@ -2462,7 +2462,7 @@ const struct CGUIConstItem ConstDeskTop[TOTAL_GUI_ITEMS_COUNT] =
 
 	{IDK_LABEL, ID_LOCK_LCONTRLOCKTIME,
 	20, 149, 168, 8,
-	"╨Й┬о┬н╨▓╨░ ╤Ю╨░╥Р┬м╨┐ ┬з┬а╨З╨Б╨░┬а┬н╨Б╨┐", "",
+	"Контр время запирания", "",
 	NULL, // Common Items cannot contain
 	ConstDeskTop + ID_LOCK_FORMLOCK, // Owner
 	&Lock_LContrLockTimeAdditional, // Additional data
@@ -2471,7 +2471,7 @@ const struct CGUIConstItem ConstDeskTop[TOTAL_GUI_ITEMS_COUNT] =
 
 	{IDK_LABEL, ID_LOCK_LPUSHMOV,
 	20, 159, 120, 8,
-	"тАв┬о┬д┬о╤Ю ╨▓┬о┬л╨Д┬а╨▓╥Р┬л╨┐", "",
+	"Ходов толкателя", "",
 	NULL, // Common Items cannot contain
 	ConstDeskTop + ID_LOCK_FORMLOCK, // Owner
 	&Lock_LPushMovAdditional, // Additional data
@@ -2480,7 +2480,7 @@ const struct CGUIConstItem ConstDeskTop[TOTAL_GUI_ITEMS_COUNT] =
 
 	{IDK_LABEL, ID_LOCK_LCHOPMOV,
 	20, 119, 120, 8,
-	"тАЮ╤Ю╨Б┬ж╥Р┬н╨Б╥Р ╨▒╨О╨░┬о╨▒┬а", "",
+	"Движение сброса", "",
 	NULL, // Common Items cannot contain
 	ConstDeskTop + ID_LOCK_FORMLOCK, // Owner
 	&Lock_LChopMovAdditional, // Additional data
@@ -2489,7 +2489,7 @@ const struct CGUIConstItem ConstDeskTop[TOTAL_GUI_ITEMS_COUNT] =
 
 	{IDK_LABEL, ID_LOCK_LRETCHOP,
 	20, 129, 112, 8,
-	"тАЪ┬о┬з╤Ю╨░┬а╨▓ ╨▒╨О╨░┬о╨▒┬а", "",
+	"Возврат сброса", "",
 	NULL, // Common Items cannot contain
 	ConstDeskTop + ID_LOCK_FORMLOCK, // Owner
 	&Lock_LRetChopAdditional, // Additional data
@@ -2516,7 +2516,7 @@ const struct CGUIConstItem ConstDeskTop[TOTAL_GUI_ITEMS_COUNT] =
 
 	{IDK_LABEL, ID_LOCK_LCHOPMOVES,
 	20, 169, 96, 8,
-	"тАв┬о┬д┬о╤Ю ╨▒╨О╨░┬о╨▒┬а", "",
+	"Ходов сброса", "",
 	NULL, // Common Items cannot contain
 	ConstDeskTop + ID_LOCK_FORMLOCK, // Owner
 	&Lock_LChopMovesAdditional, // Additional data
@@ -2741,7 +2741,7 @@ const struct CGUIConstItem ConstDeskTop[TOTAL_GUI_ITEMS_COUNT] =
 
 	{IDK_CHECK, ID_LOCK_CBDIF,
 	232, 59, 36, 10,
-	"┬д╨Б╨┤", "",
+	"диф", "",
 	NULL, // This is not a container
 	ConstDeskTop + ID_LOCK_FORMLOCK, // Owner
 	&Lock_CBDifAdditional, // Additional data
@@ -2750,7 +2750,7 @@ const struct CGUIConstItem ConstDeskTop[TOTAL_GUI_ITEMS_COUNT] =
 
 	{IDK_BUTTON, ID_LOCK_BEXIT,
 	244, 183, 48, 24,
-	"тАЪтА║тАв", "",
+	"ВЫХ", "",
 	NULL, // A Button cannot contain
 	ConstDeskTop + ID_LOCK_FORMLOCK, // Owner
 	&Lock_BExitAdditional, // Additional data
@@ -2784,7 +2784,7 @@ const struct CGUIConstItem ConstDeskTop[TOTAL_GUI_ITEMS_COUNT] =
 
 	{IDK_LABEL, ID_INJECTION_LINJECTION,
 	92, 27, 96, 16,
-	"тАЬ┬з╥Р┬л ╤Ю╨З╨░╨╗╨▒╨Д┬а", "",
+	"Узел впрыска", "",
 	NULL, // Common Items cannot contain
 	ConstDeskTop + ID_INJECTION_FORMINJECTION, // Owner
 	&Injection_LInjectionAdditional, // Additional data
@@ -2793,7 +2793,7 @@ const struct CGUIConstItem ConstDeskTop[TOTAL_GUI_ITEMS_COUNT] =
 
 	{IDK_LABEL, ID_INJECTION_LINJ1,
 	28, 59, 64, 8,
-	"тАЪ╨З╨░╨╗╨▒╨Д 1", "",
+	"Впрыск 1", "",
 	NULL, // Common Items cannot contain
 	ConstDeskTop + ID_INJECTION_FORMINJECTION, // Owner
 	&Injection_Linj1Additional, // Additional data
@@ -2802,7 +2802,7 @@ const struct CGUIConstItem ConstDeskTop[TOTAL_GUI_ITEMS_COUNT] =
 
 	{IDK_LABEL, ID_INJECTION_LINJ2,
 	28, 69, 64, 8,
-	"тАЪ╨З╨░╨╗╨▒╨Д 2", "",
+	"Впрыск 2", "",
 	NULL, // Common Items cannot contain
 	ConstDeskTop + ID_INJECTION_FORMINJECTION, // Owner
 	&Injection_LInj2Additional, // Additional data
@@ -2811,7 +2811,7 @@ const struct CGUIConstItem ConstDeskTop[TOTAL_GUI_ITEMS_COUNT] =
 
 	{IDK_LABEL, ID_INJECTION_LINJ3,
 	28, 79, 64, 8,
-	"тАЪ╨З╨░╨╗╨▒╨Д 3", "",
+	"Впрыск 3", "",
 	NULL, // Common Items cannot contain
 	ConstDeskTop + ID_INJECTION_FORMINJECTION, // Owner
 	&Injection_LInj3Additional, // Additional data
@@ -2847,7 +2847,7 @@ const struct CGUIConstItem ConstDeskTop[TOTAL_GUI_ITEMS_COUNT] =
 
 	{IDK_LABEL, ID_INJECTION_LLOAD1,
 	28, 109, 80, 9,
-	"тАб┬а╨И╨░╨│┬з╨Д┬а 1", "",
+	"Загрузка 1", "",
 	NULL, // Common Items cannot contain
 	ConstDeskTop + ID_INJECTION_FORMINJECTION, // Owner
 	&Injection_LLoad1Additional, // Additional data
@@ -2856,7 +2856,7 @@ const struct CGUIConstItem ConstDeskTop[TOTAL_GUI_ITEMS_COUNT] =
 
 	{IDK_LABEL, ID_INJECTION_LLOAD2,
 	28, 119, 80, 9,
-	"тАб┬а╨И╨░╨│┬з╨Д┬а 2", "",
+	"Загрузка 2", "",
 	NULL, // Common Items cannot contain
 	ConstDeskTop + ID_INJECTION_FORMINJECTION, // Owner
 	&Injection_LLoad2Additional, // Additional data
@@ -2865,7 +2865,7 @@ const struct CGUIConstItem ConstDeskTop[TOTAL_GUI_ITEMS_COUNT] =
 
 	{IDK_LABEL, ID_INJECTION_LLOAD3,
 	28, 129, 80, 9,
-	"тАб┬а╨И╨░╨│┬з╨Д┬а 3", "",
+	"Загрузка 3", "",
 	NULL, // Common Items cannot contain
 	ConstDeskTop + ID_INJECTION_FORMINJECTION, // Owner
 	&Injection_LLoad3Additional, // Additional data
@@ -2874,7 +2874,7 @@ const struct CGUIConstItem ConstDeskTop[TOTAL_GUI_ITEMS_COUNT] =
 
 	{IDK_LABEL, ID_INJECTION_LFORM1,
 	28, 89, 112, 9,
-	"тАЭ┬о╨░┬м╨Б╨░┬о╤Ю┬а┬н╨Б╥Р 1", "",
+	"Формирование 1", "",
 	NULL, // Common Items cannot contain
 	ConstDeskTop + ID_INJECTION_FORMINJECTION, // Owner
 	&Injection_LForm1Additional, // Additional data
@@ -2883,7 +2883,7 @@ const struct CGUIConstItem ConstDeskTop[TOTAL_GUI_ITEMS_COUNT] =
 
 	{IDK_LABEL, ID_INJECTION_LFORM2,
 	28, 99, 112, 9,
-	"тАЭ┬о╨░┬м╨Б╨░┬о╤Ю┬а┬н╨Б╥Р 2", "",
+	"Формирование 2", "",
 	NULL, // Common Items cannot contain
 	ConstDeskTop + ID_INJECTION_FORMINJECTION, // Owner
 	&Injection_LForm2Additional, // Additional data
@@ -2892,7 +2892,7 @@ const struct CGUIConstItem ConstDeskTop[TOTAL_GUI_ITEMS_COUNT] =
 
 	{IDK_LABEL, ID_INJECTION_LDECOMPRESSION,
 	28, 139, 96, 8,
-	"тАЮ╥Р╨Д┬о┬м╨З╨░╥Р╨▒╨▒╨Б╨┐", "",
+	"Декомпрессия", "",
 	NULL, // Common Items cannot contain
 	ConstDeskTop + ID_INJECTION_FORMINJECTION, // Owner
 	&Injection_LDecompressionAdditional, // Additional data
@@ -3117,7 +3117,7 @@ const struct CGUIConstItem ConstDeskTop[TOTAL_GUI_ITEMS_COUNT] =
 
 	{IDK_BUTTON, ID_INJECTION_BEXIT,
 	220, 162, 48, 24,
-	"тАЪтА║тАв", "",
+	"ВЫХ", "",
 	NULL, // A Button cannot contain
 	ConstDeskTop + ID_INJECTION_FORMINJECTION, // Owner
 	&Injection_BExitAdditional, // Additional data

@@ -22,21 +22,21 @@ unsigned char dh;
 const struct CGUIConstItem *ActiveDialog;
 struct CDialogCtrl *ActiveDialogSpec;
 
-// Р†РЅС–С†С–Р°Р»С–Р·Р°С†С–СЏ С‡РµСЂРіРё РЅР° РїСЂРѕРјР°Р»СЊРѕРІСѓРІР°РЅРЅСЏ DrawQueue
+// Ініціалізація черги на промальовування DrawQueue
 void *DrawQueueData[DRAW_QUEUE_MAX];
 struct CDeque DrawQueue =
 	{0,0,DRAW_QUEUE_MAX,DrawQueueData};
 
-// Р†РЅС–С†С–Р°Р»С–Р·Р°С†С–СЏ СЃС‚РµРєСѓ РµР»РµРјРµРЅС‚С–РІ РІРµСЂС…РЅСЊРѕРіРѕ СЂС–РІРЅСЏ DialogStack
+// Ініціалізація стеку елементів верхнього рівня DialogStack
 void *DialogStackData[DIALOG_STACK_MAX];
 struct CDeque DialogStack =
 	{0,0,DIALOG_STACK_MAX,DialogStackData};
 
 /**********************************************************************************
- *  Р†РЅС–С†С–Р°Р»С–Р·Р°С†С–СЏ СЃРµСЂРІРµСЂР°.                                                        *
- *  РїРѕРІРµСЂС‚Р°С”                                                                      *
- *      1 Сѓ РІРёРїР°РґРєСѓ СѓСЃРїС–С€РЅРѕРіРѕ Р·Р°РІРµСЂС€РµРЅРЅСЏ                                          *
- *      0 С–РЅР°РєС€Рµ                                                                  *
+ *  Ініціалізація сервера.                                                        *
+ *  повертає                                                                      *
+ *      1 у випадку успішного завершення                                          *
+ *      0 інакше                                                                  *
  **********************************************************************************/
 int InitGUIServer(void)
 {
@@ -53,8 +53,8 @@ int InitGUIServer(void)
 }
 
 /**********************************************************************************
- *  РџСЂРѕРјР°Р»СЋРІР°С‚Рё С‡Р°СЃС‚РёРЅСѓ СЂРѕР±РѕС‡РѕРіРѕ СЃС‚РѕР»Р°, РІРёРєРѕСЂРёСЃС‚РѕРІСѓСЋС‡Рё РґР°РЅС– Р· DrawQueue           *
- *  С‚Р° ConstDeskTop                                                               *
+ *  Промалювати частину робочого стола, використовуючи дані з DrawQueue           *
+ *  та ConstDeskTop                                                               *
  **********************************************************************************/
 void DrawGUI(void)
 {
@@ -140,8 +140,8 @@ void RefreshGUIItem(const struct CGUIConstItem *Item)
 }
 
 /**********************************************************************************
- *  РџРѕРІРµСЂС‚Р°С” РІРєР°Р·С–РІРЅРёРє РЅР° С‚Сѓ РґРµС‚Р°Р»СЊ С–РЅС‚РµСЂС„РµР№СЃСѓ, СЏРєР° РјС–СЃС‚РёС‚СЊ С‚РѕС‡РєСѓ x, y            *
- *  С” РІРёРґРёРјР° РЅР° РµРєСЂР°РЅС–                                                            *
+ *  Повертає вказівник на ту деталь інтерфейсу, яка містить точку x, y            *
+ *  є видима на екрані                                                            *
  **********************************************************************************/
 const struct CGUIConstItem *GetGUIItem(unsigned int x, unsigned int y,
 									const struct CGUIConstItem *Item)
@@ -157,7 +157,7 @@ const struct CGUIConstItem *GetGUIItem(unsigned int x, unsigned int y,
 	if (!IS_POINT_IN_RECTANGLE(ActiveDialog->Left,ActiveDialog->Top,
 		ActiveDialog->Width,ActiveDialog->Height,x,y))
 	{
-		// РљРѕСЂРёСЃС‚СѓРІР°С‡ С‚РёС†СЊРЅСѓРІ РїРѕР·Р° РјРµР¶Р°РјРё РґС–Р°Р»РѕРіР°
+		// Користувач тицьнув поза межами діалога
 		RestoreActiveDialogFromStack();
 		return Item;
 	}
@@ -202,12 +202,12 @@ const struct CGUIConstItem *GetGUIItem(unsigned int x, unsigned int y,
 		}
 		++Item;
 	}
-	// Р”РѕСЃСЏРіР»Рё Р·Р°РіР»СѓС€РєСѓ, РѕС‚Р¶Рµ С‚СЂРµР±Р° РїРѕРІРµСЂРЅСѓС‚Рё Р±Р°С‚СЊРєС–РІСЃСЊРєРёР№ РєРѕРЅС‚РµР№РЅРµСЂ
+	// Досягли заглушку, отже треба повернути батьківський контейнер
     return (Item-1)->Owner;
 }
 
 /**********************************************************************************
- *  Р’С–Р·СѓР°Р»СЊРЅРѕ РІРёРґС–Р»РёС‚Рё РєСѓСЂСЃРѕСЂРѕРј РґРµС‚Р°Р»СЊ С–РЅС‚РµСЂС„РµР№СЃСѓ                                 *
+ *  Візуально виділити курсором деталь інтерфейсу                                 *
  **********************************************************************************/
 void SelectGUIItem(const struct CGUIConstItem *Item)
 {
@@ -239,16 +239,16 @@ void SelectGUIItem(const struct CGUIConstItem *Item)
 }
 
 /**********************************************************************************
- *  Р’СЃС‚Р°РЅРѕРІРёС‚Рё РєСѓСЂСЃРѕСЂ РЅР° РѕРґРёРЅ С–Р· РµР»РµРјРµРЅС‚С–РІ С–РЅС‚РµСЂС„РµР№СЃСѓ С‚Р° Р·Р°Р±РµР·РїРµС‡РёС‚Рё Р№РѕРіРѕ         *
- *  РІРёРґРёРјС–СЃС‚СЊ                                                                     *
+ *  Встановити курсор на один із елементів інтерфейсу та забезпечити його         *
+ *  видимість                                                                     *
  **********************************************************************************/
 void SetSelection(const struct CGUIConstItem *Item)
 {
 	const struct CGUIConstItem *Parent,*p,*r,*toRepaint=NULL;
 	void *q;
 
-	// РќРµРІРёРґРёРјРёР№ РµР»РµРјРµРЅС‚ РЅРµ РјРѕР¶РЅР° РІРёРґС–Р»РёС‚Рё, СЃРїРѕС‡Р°С‚РєСѓ С‚СЂРµР±Р° Р№РѕРіРѕ Р·СЂРѕР±РёС‚Рё РІРёРґРёРјРёРј
-	// Сѓ РєРѕСЂРёСЃС‚СѓРІР°С†СЊРєС–Р№ С‡Р°СЃС‚РёРЅС– РїСЂРѕРіСЂР°РјРё
+	// Невидимий елемент не можна виділити, спочатку треба його зробити видимим
+	// у користувацькій частині програми
 	if (!Item->Additional->IsVisible)
 		return;
 #ifndef LABELS_ARE_SELECTABLE
@@ -258,7 +258,7 @@ void SetSelection(const struct CGUIConstItem *Item)
 	Parent = Item->Owner;
 	p=Parent;
 
-	// РџРµСЂРµРєРѕРЅР°С‚РёСЃСЏ Сѓ С‚РѕРјСѓ, С‰Рѕ РµР»РµРјРµРЅС‚ РІРёРґРЅРѕ РЅР° СЂРѕР±РѕС‡РѕРјСѓ СЃС‚РѕР»С–
+	// Переконатися у тому, що елемент видно на робочому столі
 	while (p)
 	{
 		switch (p->Kind)
@@ -271,7 +271,7 @@ void SetSelection(const struct CGUIConstItem *Item)
 				toRepaint = p;
 			}
 			break;
-		case IDK_TAB: // Р•Р»РµРјРµРЅС‚ Р·РЅР°С…РѕРґРёС‚СЊСЃСЏ РЅР° СЃС‚РѕСЂС–РЅС†С– Р·Р°РєР»Р°РґРєРё
+		case IDK_TAB: // Елемент знаходиться на сторінці закладки
 			r=p->Owner;
 			q=(r->Specific);
 			if (((struct CTabControlItem *)q)->Active != p)
@@ -281,7 +281,7 @@ void SetSelection(const struct CGUIConstItem *Item)
 			}
 			p=p->Owner;
 			break;
-		case IDK_TABCONTROL: // Р•Р»РµРјРµРЅС‚ С” Р·Р°РєР»Р°РґРєРѕСЋ
+		case IDK_TABCONTROL: // Елемент є закладкою
 			q=p->Specific;
 			if (((struct CTabControlItem *)q)->Active != Item)
 			{
@@ -292,13 +292,13 @@ void SetSelection(const struct CGUIConstItem *Item)
 		default:;
 		}
 		if (p)
-			p=p->Owner; // РџРµСЂРµРІС–СЂРєР° РїРѕС‚СЂС–Р±РЅР°,
-	} //Р±Рѕ РјРѕР¶СѓС‚СЊ Р±СѓС‚Рё РЅРµРїРѕСЃР»С–РґРѕРІРЅС– РїРµСЂРµС…РѕРґРё
+			p=p->Owner; // Перевірка потрібна,
+	} //бо можуть бути непослідовні переходи
 
 	/*
-		РЇРєС‰Рѕ Р·РґС–Р№СЃРЅСЋС”С‚СЊСЃСЏ РїРµСЂРµРјР°Р»СЊРѕРІСѓРІР°РЅРЅСЏ, С‚Рѕ РІРёРґС–Р»СЏС‚Рё РЅРµ С‚СЂРµР±Р°, РІСЃС‚Р°РЅРѕРІРёС‚СЊСЃСЏ СЃР°РјРµ,
-		РїСЂРѕС‚Рµ Сѓ РїСЂРѕС‚РёР»РµР¶РЅРѕРјСѓ РІРёРїР°РґРєСѓ РґРѕРІРµРґРµС‚СЊСЃСЏ Р·РґС–Р№СЃРЅРёС‚Рё С†Рµ РІСЂСѓС‡РЅСѓ (С‰Рѕ, РІР»Р°СЃРЅРµ,
-		С– СЂРѕР±РёС‚СЊ РЅР°СЃС‚СѓРїРЅРёР№ РѕРїРµСЂР°С‚РѕСЂ)
+		Якщо здійснюється перемальовування, то виділяти не треба, встановиться саме,
+		проте у протилежному випадку доведеться здійснити це вручну (що, власне,
+		і робить наступний оператор)
 	*/
 	if (toRepaint)
 		AddToDequeTail((void *)toRepaint, &DrawQueue);
@@ -312,8 +312,8 @@ void SetSelection(const struct CGUIConstItem *Item)
 char *String;
 char temp_char,temp_carry;
 /**********************************************************************************
- *  РћСЃРЅРѕРІРЅР° С„СѓРЅРєС†С–СЏ, СЏРєР° Р°Р±Рѕ РїСЂРѕРјР°Р»СЊРѕРІСѓС” РґРµС‚Р°Р»С– С–РЅС‚РµСЂС„РµР№СЃСѓ, Р°Р±Рѕ РѕР±СЂРѕР±-            *
- *  Р»СЏС” РїРѕРґС–СЋ, РѕРїРёСЃР°РЅСѓ СЃС‚СЂСѓРєС‚СѓСЂРѕСЋ Event                                           *
+ *  Основна функція, яка або промальовує деталі інтерфейсу, або оброб-            *
+ *  ляє подію, описану структурою Event                                           *
  **********************************************************************************/
 int ProcessGUIServer(const struct CEventDescriptor *Event)
 {
@@ -322,11 +322,11 @@ int ProcessGUIServer(const struct CEventDescriptor *Event)
 	unsigned char c=0;
 	if (DequeIsEmpty(&DrawQueue))
 	{
-		//	РћР±СЂРѕР±РєР° РїРѕРґС–Р№
+		//	Обробка подій
 		switch (Event->Type)
 		{
 		case EVENT_TOUCHSCREEN:
-			SelectGUIItem(ActiveDialogSpec->Cursor); // Р—РЅСЏС‚С‚СЏ РІРёРґС–Р»РµРЅРЅСЏ
+			SelectGUIItem(ActiveDialogSpec->Cursor); // Зняття виділення
 			Item = GetGUIItem(Event->x,Event->y,ActiveDialog);
 			if (Item)
 			{
@@ -334,11 +334,11 @@ int ProcessGUIServer(const struct CEventDescriptor *Event)
 					ActiveDialogSpec->Cursor = Item;
 				else
 					ActiveDialogSpec->Cursor = NULL;
-			// РџРµСЂРІРёРЅРЅР° СЂРµР°РєС†С–СЏ:
+			// Первинна реакція:
 				switch (Item->Kind)
 				{
 				case IDK_CHECK:
-					// CheckBox С–РЅРІРµСЂС‚СѓС” СЃРІС–Р№ СЃС‚Р°РЅ
+					// CheckBox інвертує свій стан
 					q = Item->Specific;
 					if (Item->Additional->IsEnabled)
 						((struct CCheckBoxItem *) q)->IsChecked =
@@ -348,9 +348,9 @@ int ProcessGUIServer(const struct CEventDescriptor *Event)
 			}
 			if (ActiveDialogSpec->Cursor)
 				ActionPerformed(ActiveDialogSpec->Cursor,Event);
-			// РїРµСЂРµРґР°С‡Р° РєРµСЂСѓРІР°РЅРЅСЏ РЅР° "РїСЂРёРєР»Р°РґРЅРёР№ СЂС–РІРµРЅСЊ"
+			// передача керування на "прикладний рівень"
 			if (DequeIsEmpty(&DrawQueue))
-				SelectGUIItem(ActiveDialogSpec->Cursor); // РїРѕСЃС‚Р°РІРёС‚Рё РІРёРґС–Р»РµРЅРЅСЏ,
+				SelectGUIItem(ActiveDialogSpec->Cursor); // поставити виділення,
 			return 1;
 		case EVENT_KEYBOARD:
 			SelectGUIItem(ActiveDialogSpec->Cursor);
@@ -366,11 +366,11 @@ int ProcessGUIServer(const struct CEventDescriptor *Event)
 			{
 
 			case K_LEFT:
-				// РќС–РєРѕР»Рё РІРёР±СЂР°РЅРёР№ РµР»РµРјРµРЅС‚ РЅРµ РјРѕР¶Рµ Р±СѓС‚Рё РµР»РµРјРµРЅС‚РѕРј РІРµСЂС…РЅСЊРѕРіРѕ СЂС–РІРЅСЏ
+				// Ніколи вибраний елемент не може бути елементом верхнього рівня
 				assert(ActiveDialogSpec->Cursor->Owner);
 				if (!ActiveDialogSpec->Cursor)
 					ActiveDialogSpec->Cursor = ActiveDialog->Contained;
-				// РљРѕРјСѓ С‚СЂРµР±Р° РїРѕСЂРѕР¶РЅС–Р№ РґС–Р°Р»РѕРі?
+				// Кому треба порожній діалог?
 				assert(ActiveDialogSpec->Cursor);
 				if (Item=GetNearestLeftItem(ActiveDialogSpec->Cursor))
 					ActiveDialogSpec->Cursor=Item;
@@ -433,8 +433,8 @@ int ProcessGUIServer(const struct CEventDescriptor *Event)
 					}
 					else
 					{
-						// РєСѓСЂСЃРѕСЂ Р·РЅР°С…РѕРґРёС‚СЊСЃСЏ РЅР° РµР»РµРјРµРЅС‚С– РЅРёР¶РЅСЊРѕРіРѕ СЂС–РІРЅСЏ, РѕС‚Р¶Рµ
-						// С‚СЂРµР±Р° РїСЂРѕСЃС‚Рѕ Р·РіРµРЅРµСЂСѓРІР°С‚Рё РІС–РґРїРѕРІС–РґРЅСѓ РїРѕРґС–СЋ
+						// курсор знаходиться на елементі нижнього рівня, отже
+						// треба просто згенерувати відповідну подію
 						if (ActiveDialogSpec->Cursor)
 							ActionPerformed(ActiveDialogSpec->Cursor,Event);
 						if (DequeIsEmpty(&DrawQueue))
@@ -589,10 +589,10 @@ int ProcessGUIServer(const struct CEventDescriptor *Event)
 	else
 	{
 		/*
-			РљРІР°РЅС‚ РїСЂРѕРјР°Р»СЊРѕРІСѓРІР°РЅРЅСЏ, СЂРѕР·РјС–СЂ СЏРєРѕРіРѕ РІРёР·РЅР°С‡Р°С”С‚СЊСЃСЏ РјР°РєСЂРѕСЃРѕРј MAX_ITEMS_TO_DRAW
+			Квант промальовування, розмір якого визначається макросом MAX_ITEMS_TO_DRAW
 		*/
 		DrawGUI();
-		if (DequeIsEmpty(&DrawQueue)) // РџСЂРѕРјР°Р»СЊРѕРІСѓРІР°РЅРЅСЏ Р·Р°РєС–РЅС‡РµРЅРѕ
+		if (DequeIsEmpty(&DrawQueue)) // Промальовування закінчено
 		{
 			SelectGUIItem(ActiveDialogSpec->Cursor);
 		}
@@ -601,8 +601,8 @@ int ProcessGUIServer(const struct CEventDescriptor *Event)
 }
 
 /*********************************************************************************
- *  Р“СЂСѓРїР° С„СѓРЅРєС†С–Р№ Р· РґР°РЅРёРјРё РґР»СЏ С—С… СЂРѕР±РѕС‚Рё, СЏРєС– РІРёРєРѕСЂРёСЃС‚РѕРІСѓСЋС‚СЊСЃСЏ РґР»СЏ РЅР°РІС–РіР°С†С–С— РїРѕ  *
- * РґС–Р°Р»РѕРіРѕРІС–. Р РѕР»СЊ РІРёРїР»РёРІР°С” Р· РЅР°Р·РІРё                                              *
+ *  Група функцій з даними для їх роботи, які використовуються для навігації по  *
+ * діалогові. Роль випливає з назви                                              *
  *********************************************************************************/
 #define abs(x) ((x)<0 ? -(x) : x)
 
@@ -616,7 +616,7 @@ const struct CGUIConstItem *GetNearestLeftItem(const struct CGUIConstItem *Item)
 
 	min_dist=SCREEN_WIDTH;
 	ItemToReturn=NULL;
-	ItemToCompare=Item->Owner->Contained; // Р¦Рµ РїРµСЂС€РёР№ РµР»РµРјРµРЅС‚ РЅР° С†СЊРѕРјСѓ СЂС–РІРЅС–
+	ItemToCompare=Item->Owner->Contained; // Це перший елемент на цьому рівні
 	while (ItemToCompare->Kind!=IDK_END)
 	{
 		if (ItemToCompare!=Item
@@ -644,7 +644,7 @@ const struct CGUIConstItem *GetNearestRightItem(const struct CGUIConstItem *Item
 
 	min_dist=SCREEN_WIDTH;
 	ItemToReturn=NULL;
-	ItemToCompare=Item->Owner->Contained; // Р¦Рµ РїРµСЂС€РёР№ РµР»РµРјРµРЅС‚ РЅР° С†СЊРѕРјСѓ СЂС–РІРЅС–
+	ItemToCompare=Item->Owner->Contained; // Це перший елемент на цьому рівні
 	while (ItemToCompare->Kind!=IDK_END)
 	{
 		if (ItemToCompare!=Item
@@ -672,7 +672,7 @@ const struct CGUIConstItem *GetNearestUpperItem(const struct CGUIConstItem *Item
 
 	min_dist=SCREEN_HEIGHT;
 	ItemToReturn=NULL;
-	ItemToCompare=Item->Owner->Contained; // Р¦Рµ РїРµСЂС€РёР№ РµР»РµРјРµРЅС‚ РЅР° С†СЊРѕРјСѓ СЂС–РІРЅС–
+	ItemToCompare=Item->Owner->Contained; // Це перший елемент на цьому рівні
 	while (ItemToCompare->Kind!=IDK_END)
 	{
 		if (ItemToCompare!=Item
@@ -700,7 +700,7 @@ const struct CGUIConstItem *GetNearestLowerItem(const struct CGUIConstItem *Item
 
 	min_dist=SCREEN_HEIGHT;
 	ItemToReturn=NULL;
-	ItemToCompare=Item->Owner->Contained; // Р¦Рµ РїРµСЂС€РёР№ РµР»РµРјРµРЅС‚ РЅР° С†СЊРѕРјСѓ СЂС–РІРЅС–
+	ItemToCompare=Item->Owner->Contained; // Це перший елемент на цьому рівні
 	while (ItemToCompare->Kind!=IDK_END)
 	{
 		if (ItemToCompare!=Item

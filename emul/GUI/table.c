@@ -36,7 +36,7 @@ void DrawTable(const struct CGUIConstItem *Table)
 
 	Cell = Table->Contained;
 	AddToDequeTail((void *)Cell,&DrawQueue);
-	// Р—Р°РіРѕР»РѕРІРѕРє С‚Р°Р±Р»РёС†С–
+	// Заголовок таблиці
 	vLine(Cell->Width+Cell->Left-4,tTop+1,tHeight-3);
 
 	for (i=1;i<Cols;i++)
@@ -48,7 +48,7 @@ void DrawTable(const struct CGUIConstItem *Table)
 	++Cell;
 	hLine(tLeft+1,Cell->Top-3,tWidth-3);
 
-	// РґСЂСѓРє РїРѕ СЂСЏРґРєР°С…
+	// друк по рядках
 	for (j=1;j<Rows;j++)
 	{
 		hLine(tLeft+1,Cell->Top-2,tWidth-3);
