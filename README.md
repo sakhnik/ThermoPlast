@@ -10,3 +10,7 @@ Released with the permission of the code owner, since the platform has changed.
 
 The appliance was successfully implemented within few months, and intensively
 produced and sold during 5 years.
+
+![main screen](main.png)
+![temperature screen](therm.png)
+![lock screen](lock.png)
